@@ -12,16 +12,29 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: [
+    '@/assets/css/style.scss',
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    { src: '~/plugins/vue-simple-alert.js', mode: 'client' },
+    '~/plugins/number-formater.js',
+    '~/plugins/api-run.js',
+  ],
+
+  // dot-env module options
+  dotenv: {
+    /* module options */
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  buildModules: [
+    '@nuxtjs/dotenv',
+  ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -31,18 +44,33 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    // https://www.npmjs.com/package/cookie-universal-nuxt
+    ['cookie-universal-nuxt', { alias: 'cookiz' }],
+    // https://www.npmjs.com/package/@nuxtjs/style-resources
+    '@nuxtjs/style-resources',
+    //https://www.npmjs.com/package/nuxt-vue-multiselect
+    'nuxt-vue-multiselect',
   ],
+
+  // variables address
+  styleResources: {
+    scss: ['~/assets/css/var.scss']
+  },
+
+  // bootstrap-vue config
+  bootstrapVue: {
+    icons: true,
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: 'https://joorweb.ir/',
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en',
+      lang: 'fa-IR',
     },
   },
 

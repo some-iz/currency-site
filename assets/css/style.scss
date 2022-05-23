@@ -1,0 +1,61 @@
+@import "./fontiran.css";
+@import "./var.scss";
+
+*:not(i){
+  font-family: IRANSans , "IRANSans";
+}
+html::-webkit-scrollbar {
+  width: 9px;
+  background: rgba(0, 0, 0, 0.09);
+}
+html::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+html , body{
+  direction: rtl;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  min-height: 100vh;
+  width: 100%;
+}
+body{
+  text-align: right;
+  overflow-x: hidden;
+}
+a , a:hover{
+  cursor: pointer;
+  text-decoration: none;
+}
+.disable-select{
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+     supported by Chrome and Opera */
+}
+input , select{
+  text-indent: 0;
+}
+.input-form{
+  background: $black-50;
+  padding: 6px 7px;
+  border: 2px solid $black-20;
+  font-size: 13px;
+  transition: .3s;
+  border-radius: 7px;
+  color: $black-700;
+}
+.input-form:focus{
+  border: 2px solid $black-100;
+  outline: 0;
+}
+a, a:hover{
+  color: $black-full;
+}

@@ -1,0 +1,12 @@
+@import "./rgba.scss";
+
+$primary-color: #fdc500;
+$primary-color-for-secondary-btn: rgb(234, 164, 1);
+$error-color: rgba(255, 0, 0, 0.932);
+$info-color: rgb(1, 17, 242);
+$gold-color: rgb(255, 196, 0);
+
+$gradient-1: linear-gradient(60deg, #2B2E4A 0%, #2B2E4A 30%, #E84545 calc(30% + 1px), #E84545 60%, #903749 calc(60% + 1px), #903749 70%, #53354A calc(70% + 1px), #53354A 100%);
+
+// background: linear-gradient(125deg, #fffcf1 0%, #fffcf1 40%, #fff9e6 calc(40% + 1px), #fef3cd 60%, #ffedae  calc(60% + 1px), #ffdd63 72%, #ffd025 calc(72% + 1px), #ffcf20 100%);
+//     background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
