@@ -6,12 +6,11 @@
 }
 html::-webkit-scrollbar {
   width: 9px;
-  background: rgba(0, 0, 0, 0.09);
+  background: $black-100;
 }
 html::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
+  background: $black-200;
 }
-
 html , body{
   direction: rtl;
   scroll-behavior: smooth;
@@ -22,6 +21,7 @@ html , body{
 body{
   text-align: right;
   overflow-x: hidden;
+  background: $second-color;
 }
 a , a:hover{
   cursor: pointer;

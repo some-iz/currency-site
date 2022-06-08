@@ -1,13 +1,15 @@
 <template>
   <main>
+    <fast-signup></fast-signup>
     <exchange></exchange>
   </main>
 </template>
 
 <script>
 import exchange from '~/components/widget/exchange.vue'
+import FastSignup from '~/components/widget/fastSignup.vue'
 export default {
-  components: { exchange },
+  components: { exchange, FastSignup },
   name: 'IndexPage',
 }
 </script>

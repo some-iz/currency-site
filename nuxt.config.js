@@ -50,7 +50,30 @@ export default {
     '@nuxtjs/style-resources',
     //https://www.npmjs.com/package/nuxt-vue-multiselect
     'nuxt-vue-multiselect',
+    //https://i18n.nuxtjs.org/setup
+    '@nuxtjs/i18n',
   ],
+
+  //https://i18n.nuxtjs.org/setup
+  // i18n: {
+  //   lazy: true,
+  //   langDir: 'locales/',
+  //   locales: [
+  //      {
+  //       name: 'English',
+  //       code: 'en',
+  //       iso: 'en',
+  //       file: 'en.js'
+  //     },
+  //     {
+  //       name: 'Farsi',
+  //       code: 'fa',
+  //       iso: 'fa',
+  //       file: 'fa.js'
+  //     },
+  //  ],
+  //   defaultLocale: 'en',
+  // },
 
   // variables address
   styleResources: {

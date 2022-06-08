@@ -1,6 +1,6 @@
 <template>
   <header class="w-100 pt-1 sticky-top">
-    <section class="container ">
+    <section class="container">
       <section class="mt-1 d-flex align-items-center justify-content-between">
         <logo-img></logo-img>
         <div class="d-flex align-items-center">

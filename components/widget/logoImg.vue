@@ -1,5 +1,7 @@
 <template>
-  <img class="img-fluid" src="/img/logo/logo.png"/>
+  <nuxt-link to="/">
+    <img class="img-fluid" src="/img/logo/logo.png"/>
+  </nuxt-link>
 </template>
 
 <script>
