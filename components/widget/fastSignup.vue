@@ -49,7 +49,7 @@ import Btn from './btn.vue';
             color: $black-300;
             font-size: 20px;
         }
-    }
+    }  
     .get-number{
         input{
             min-width: 300px;
