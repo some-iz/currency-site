@@ -36,8 +36,8 @@
 
 <style lang="scss" scoped>
 .social-media{
-  background: $black-20;
-  box-shadow: 0 0 20px $black-70;
+  // background: $black-20;
+  // box-shadow: 0 0 20px $black-70;
   h4{
       color: $black-650;
   }

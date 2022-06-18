@@ -2,13 +2,15 @@
   <section>
     <header-site></header-site>
     <nuxt />
+    <footer-site class="mt-4"></footer-site>
   </section>
 </template>
 
 <script>
+import FooterSite from '~/components/layouts/footerSite.vue'
 import headerSite from '~/components/layouts/headerSite.vue'
 export default {
-  components: { headerSite },
+  components: { headerSite, FooterSite },
 }
 </script>
 

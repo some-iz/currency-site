@@ -2,9 +2,9 @@
   <main>
     <fast-signup></fast-signup>
     <!-- <exchange></exchange> -->
-    <price-table></price-table>
+    <price-table class="mt-5"></price-table>
     <app class="mt-5 pt-4 pb-4"></app>
-    <social-media class="mt-5 mb-5"></social-media>
+    <social-media class="mt-5"></social-media>
   </main>
 </template>
 
@@ -20,7 +20,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-main{
-  height: 1000px;
-}
+
 </style>

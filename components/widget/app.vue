@@ -54,7 +54,7 @@ import Btn from './btn.vue'
             overflow: hidden;
             background-color: #FAF5E4;;
             border: 2px solid #FAF5E4;;
-            animation: ani-border 4s infinite alternate ease;
+            animation: ani-border 4s infinite alternate linear;
             div{
                 width: 100%;
                 height: 100%;
