@@ -2,24 +2,20 @@
   <section class="price-table mt-4 pt-3">
     <div class="container">
       <div class="trade-sec w-100">
-        <!-- <div class="head-trade d-flex font-weight-bold">
-          <span class="py-3 px-4 active">
-            خرید از ربیت
-          </span>
-          <span class="py-3 px-4">
-            فروش به ربیت
-          </span>
-        </div> -->
-        <custom-table></custom-table>
+        <arz-table></arz-table>
+        <div class="py-3 text-center font-weight-bold show-all">
+          نمایش تمامی ارزها
+          <b-icon-caret-left-fill></b-icon-caret-left-fill>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import customTable from './customTable.vue'
+import arzTable from './arzTable.vue'
   export default {
-  components: { customTable },
+  components: { arzTable },
 
   }
 </script>
@@ -29,8 +25,14 @@ import customTable from './customTable.vue'
   width: 100%;
   .trade-sec{
     border-radius: 10px;
-    border: 2px solid $black-50;
+    border: 2px solid $black-70;
     overflow: hidden;
+    box-shadow: 0 0 20px $black-70;
+    .show-all{
+      color: $black-200;
+      cursor: pointer;
+      font-size: 13px;
+    }
   }
 }
 </style>

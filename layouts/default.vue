@@ -2,7 +2,7 @@
   <section>
     <header-site></header-site>
     <nuxt />
-    <footer-site class="mt-4"></footer-site>
+    <footer-site class=""></footer-site>
   </section>
 </template>
 
