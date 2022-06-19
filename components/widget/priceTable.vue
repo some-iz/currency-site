@@ -2,11 +2,7 @@
   <section class="price-table mt-4 pt-3">
     <div class="container">
       <div class="trade-sec w-100">
-        <arz-table></arz-table>
-        <div class="py-3 text-center font-weight-bold show-all">
-          نمایش تمامی ارزها
-          <b-icon-caret-left-fill></b-icon-caret-left-fill>
-        </div>
+        <arz-table :currencyList="currencyList"></arz-table>
       </div>
     </div>
   </section>
@@ -14,10 +10,14 @@
 
 <script>
 import arzTable from './arzTable.vue'
-  export default {
+export default {
   components: { arzTable },
-
+  computed: {
+    currencyList() {
+      return this.$store.state.currency.currencyList
+    }
   }
+}
 </script>
 
 <style lang="scss" scoped>
