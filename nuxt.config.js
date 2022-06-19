@@ -52,6 +52,14 @@ export default {
     'nuxt-vue-multiselect',
     //https://i18n.nuxtjs.org/setup
     '@nuxtjs/i18n',
+    [
+      '@nuxtjs/recaptcha', {
+        hideBadge: true,
+        language: 'fa',
+        siteKey: "6LeUuw8cAAAAANTZnp0TjHVu0x5pwVEYk6otRIug", // Better would be from 'process.env.API_KEY' and with '.env' file
+        version: 2, // Or 3
+      }
+    ],
   ],
 
   //https://i18n.nuxtjs.org/setup

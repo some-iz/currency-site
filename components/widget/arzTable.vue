@@ -20,7 +20,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="border-bottom" v-for="( currency , i) in currencyList" v-show="currency.fa_name !== 'تومان'" :key="i">
+      <tr class="border-bottom" v-for="(currency , i) in currencyList" v-show="currency.fa_name !== 'تومان'" :key="i">
         <td class="arz-info">
           <div class="d-flex align-items-center">
             <img :src="currency.image" loading="lazy"

@@ -8,9 +8,12 @@
             {{ $toFarsiNum('051-437173563') }}
             <b-icon-telephone-plus-fill class="mr-1"></b-icon-telephone-plus-fill>
           </item-header>
-          <btn base="nuxtLink" url="/login" size="small" class="px-3 px-sm-4">
+          <btn @click="showModal = true" size="small" class="px-3 px-sm-4">
              ورود / ثبت نام
           </btn>
+          <custom-modal title="ورود / ثبت نام" :showModal="showModal" @closeModal="showModal = false">
+            <login></login>
+          </custom-modal>
         </div>
       </section>
       <section class="bottom-sec mt-2 px-1 w-100 d-flex align-items-center justify-content-between">
@@ -36,12 +39,21 @@
   import ItemHeader from '../widget/itemHeader.vue'
   import logoImg from '../widget/logoImg.vue'
   import MainNav from '../widget/mainNav.vue'
+  import CustomModal from '../widget/customModal.vue'
+import Login from '../widget/login.vue'
   export default {
     components: {
-      logoImg,
-      Btn,
-      MainNav,
-      ItemHeader
+    logoImg,
+    Btn,
+    MainNav,
+    ItemHeader,
+    CustomModal,
+    Login
+},
+    data() {
+      return {
+        showModal: false
+      }
     },
   }
 </script>
