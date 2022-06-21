@@ -2,7 +2,7 @@
   <section class="app container">
       <div class="app-sec w-100">
           <div class="row align-items-center">
-              <div class="col-md-6">
+              <div class="col-md-6 mb-5 mb-md-0">
                   <h3 class="mb-3 font-weight-bold">
                        خرید و فروش حرفه‌ای با ربیت 
                   </h3>

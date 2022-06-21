@@ -59,3 +59,7 @@ input , select{
 a, a:hover{
   color: $black-full;
 }
+
+.code-input input{
+  background: $black-50;
+}

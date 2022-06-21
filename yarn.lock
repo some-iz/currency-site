@@ -2732,18 +2732,18 @@ convert-source-map@^1.7.0:
   dependencies:
     safe-buffer "~5.1.1"
 
-cookie-universal-nuxt@^2.1.5:
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/cookie-universal-nuxt/-/cookie-universal-nuxt-2.1.5.tgz#669f2ff95b1bc1962c86edd69c954f60729e71e5"
-  integrity sha512-P0WCTKIyemWNtHi9lxrS5cxZmieOIEjt28B7Alu6cdSB9RqtUtpkqYyV9PRK6oJrT5eIPDYjHsJQlh6SUrFJOg==
+cookie-universal-nuxt@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/cookie-universal-nuxt/-/cookie-universal-nuxt-2.2.1.tgz#b544d0fb19670f765b3e42204f7d2157a95e6872"
+  integrity sha512-pzk+CsmnNgcpFPNr8GO+B3dR0d0ovjnyFMC5Trx3zNUEEplw94CoEbv+SLSjxsXCMOF21Cmq202Od0zYbkOa+g==
   dependencies:
     "@types/cookie" "^0.3.3"
-    cookie-universal "^2.1.5"
+    cookie-universal "^2.2.1"
 
-cookie-universal@^2.1.5:
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/cookie-universal/-/cookie-universal-2.1.5.tgz#9a6cefbfb61c750a1b8ee2610bf71566bd719544"
-  integrity sha512-nqOOmEkovCQxNYGIyzhcwsmh4c7xnxe7RWdiYFOoml9MP4L32IlU3LdPC7r7nQEnnM+9Uxlk/UhtvBl5is6M/w==
+cookie-universal@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/cookie-universal/-/cookie-universal-2.2.1.tgz#9ba3ffcfaa04afbfc0ba34d6cfba7fb56ef7f60f"
+  integrity sha512-HMm8mNbMJ81IER5BZ3QF0wz5OA/od4jDB6agNwJjJ7oDnBnQBQwUJNeCXrYCBiCKh+ZzHDQ74D96HjUTHQHjsg==
   dependencies:
     "@types/cookie" "^0.3.3"
     cookie "^0.4.0"
@@ -8066,6 +8066,14 @@ vue-currency-input@1.22.5:
   resolved "https://registry.yarnpkg.com/vue-currency-input/-/vue-currency-input-1.22.5.tgz#0d5cc1e08d0e79b6bd028bc857f5111687160bf8"
   integrity sha512-CWR5zmtlbQ6lqXxlGP+lnv3Ctlqm/DTJ8B73gbyjOdSzf0XWfxcyZPKZXstv8lfbUN6MEWe7VSogkAauye137g==
 
+vue-fake-input@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/vue-fake-input/-/vue-fake-input-1.1.0.tgz#83d94f3c08fd5bdb92a66af540a8a4e66f49cb98"
+  integrity sha512-0wu7jOb71WgP1JJfmiCrkQ2U9bkSsxPPlI6vhLV8Tw3hIvt5LKOkUij0B7ycc3A7mIN3E2LPAYi7mJeazEyQAQ==
+  dependencies:
+    core-js "^2.6.5"
+    vue "^2.6.10"
+
 vue-functional-data-merge@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/vue-functional-data-merge/-/vue-functional-data-merge-3.1.0.tgz#08a7797583b7f35680587f8a1d51d729aa1dc657"
@@ -8156,7 +8164,7 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue@^2.6.12, vue@^2.6.14:
+vue@^2.6.10, vue@^2.6.12, vue@^2.6.14:
   version "2.6.14"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.14.tgz#e51aa5250250d569a3fbad3a8a5a687d6036e235"
   integrity sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ==

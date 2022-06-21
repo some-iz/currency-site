@@ -4,7 +4,7 @@
       <div class="row align-items-center">
         <div class="box-signup col-md-7 mt-4 pt-2 pt-md-0 mt-md-0 mb-3 mb-md-0">
             <h1 class="heading font-weight-bold d-flex flex-column">
-                صرافی ربیت
+                صرافی ارزفارم
                 <span class="mt-2 pt-1">
                      بازار خرید و فروش ارزهای دیجیتال
                 </span>

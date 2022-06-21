@@ -1,11 +1,11 @@
 <template>
-  <form @submit.prevent="userLogin()" class="d-flex flex-column">
+  <form @submit.prevent="userLogin()" class="pb-1 d-flex flex-column">
     <div class="mt-2 pt-1" v-show="level === 'login'">
       <label class="mb-1">شماره تلفن خود را وارد نمایید :</label>
       <input @keypress="onlyNumber" @input="filterOnlyNumber" v-model="user.phone" class="w-100 input-form mt-1"
         type="text" name="phone" placeholder="شماره تلفن خود را بدون صفر اولیه وارد نمایید..." />
     </div>
-    <div v-show="level === 'password'" class="get-password">
+    <div v-show="level === 'password'" class="get-password mt-2 pt-1">
       <label class="mb-1">رمزعبور خود را وارد نمایید :</label>
       <input v-model="user.password" class="w-100 input-form mt-1" :type="showPass ? 'text' : 'password'"
         name="password" placeholder="رمز عبور خود را اینجا وارد نمایید..." />
@@ -19,15 +19,16 @@
       class="skip-level w-100 text-center">
       مرحله بعدی
     </btn>
-    <btn v-if="level === 'password'" :loading="loading" class="mt-5 font-weight-bold" size="small">
-      ورود به حساب کاربری
-    </btn>
-    <span @click="$emit('changeViewForget' , user.phone)"
-      class="d-flex font-weight-bold align-items-center justify-content-center forget-pass-sec"
-      v-if="level === 'password'">
-      <b-icon-unlock class="ml-1"></b-icon-unlock>
-      بازیابی رمز عبور
-    </span>
+    <div v-if="level === 'password'" class="w-100">
+      <btn width="full" :loading="loading" class="mt-5 font-weight-bold" size="small">
+        ورود به حساب کاربری
+      </btn>
+      <span @click="$emit('changeViewForget' , user.phone)"
+        class="d-flex font-weight-bold align-items-center justify-content-center forget-pass-sec">
+        <b-icon-unlock class="ml-1"></b-icon-unlock>
+        بازیابی رمز عبور
+      </span>
+    </div>
   </form>
 </template>
 
@@ -75,9 +76,8 @@
             this.loading = true;
             const res = await this.$apiRun({
               auth: false,
-              havePublicToken: true,
-              method: 'user_check_exist',
-              vars: `&username=98${this.user.phone}`
+              method: 'user_check_exists',
+              vars: `?username=98${this.user.phone}`
             })
             this.loading = false;
             if (JSON.parse(res.ok) === true)
@@ -110,30 +110,29 @@
         this.loading = true;
         const res = await this.$apiRun({
           auth: false,
-          havePublicToken: true,
           method: 'user_signin',
-          vars: `&mobile=98${this.user.phone}&password=${this.user.password}`
+          vars: `?mobile=98${this.user.phone}&password=${this.user.password}`
         })
         this.loading = false;
         if (JSON.parse(res.ok) === true) {
-          this.$cookiz.set('username', res.data[0].username, {
-            maxAge: 2147483647,
-            path: '/'
-          })
-          this.$cookiz.set('token', res.data[0].token, {
-            maxAge: 2147483647,
-            path: '/'
-          })
-          this.$cookiz.set('role', res.data[0].access_level, {
-            maxAge: 2147483647,
-            path: '/'
-          })
-          this.$store.commit('changeUserTokenAndPhone', {
-            token: res.data[0].token,
-            phone: res.data[0].username,
-            publicToken: res.data[0].store_token,
-            role: res.data[0].access_level
-          })
+          // this.$cookiz.set('username', res.data[0].username, {
+          //   maxAge: 2147483647,
+          //   path: '/'
+          // })
+          // this.$cookiz.set('token', res.data[0].token, {
+          //   maxAge: 2147483647,
+          //   path: '/'
+          // })
+          // this.$cookiz.set('role', res.data[0].access_level, {
+          //   maxAge: 2147483647,
+          //   path: '/'
+          // })
+          // this.$store.commit('changeUserTokenAndPhone', {
+          //   token: res.data[0].token,
+          //   phone: res.data[0].username,
+          //   publicToken: res.data[0].store_token,
+          //   role: res.data[0].access_level
+          // })
         } else {
           this.$fire({
             title: res.error[0].fa_title,
@@ -150,9 +149,6 @@
 <style lang="scss" scoped>
 form{
     width: max-content;
-    border-radius: 40px;
-    border-top-right-radius: 3px;
-    border-bottom-left-radius: 3px;
     min-height: 280px;
     justify-content: space-between;
     input{

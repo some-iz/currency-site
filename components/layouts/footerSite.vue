@@ -7,7 +7,7 @@
           <div class="col-md-6 mb-4 mb-md-0 brand-info">
             <logo-img class=""></logo-img>
             <p class="mt-2">
-               شرکت دانش بنیان توفاد (توسعه فن آوری آرین داده پیوسته ایرانیان) متشکل از متخصصان و افراد خبره در زمینه بلاک چین و رمز ارزها مشغول به فعالیت می‌باشد.
+               اولین صرافی خرید و فروش و مبادله ارز دیجیتال در ایران 
             </p>
             <div class="icon-sec d-flex">
               <a href="">
@@ -30,7 +30,7 @@
         </div>
         <div class="row copyright py-1 mt-5">
           <div class="col-12 py-2 d-flex justify-content-between">
-            © ربیت - سرویس کیف پول اختصاصی رمز ارز ایران
+            © ارزفارم - سرویس کیف پول اختصاصی رمز ارز ایران
             <span>
               طراحی و توسعه :
               <a href="#">

@@ -1,6 +1,6 @@
 <template>
   <nuxt-link to="/">
-    <img class="img-fluid" src="/img/logo/logo.png"/>
+    <img class="img-fluid" src="/logo.png"/>
   </nuxt-link>
 </template>
 

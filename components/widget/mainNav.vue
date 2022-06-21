@@ -20,6 +20,7 @@ nav{
         list-style: none;
         font-size: .88em;
         li{
+          white-space: nowrap;
             a{
                 color: $black-500;
                 font-weight: 500;
