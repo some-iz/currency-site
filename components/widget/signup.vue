@@ -157,7 +157,7 @@
       async restPassword() {
         const res = await this.$apiRun({
           auth: false,
-          method: 'user_forgot_password',
+          method: 'user_password_reset',
           vars: `?token=${this.user.codeToken}&code=${this.user.code}&password=${this.user.newPassword}`
         })
         this.loading = false;

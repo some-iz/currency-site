@@ -1,6 +1,5 @@
 <template>
   <main>
-    <custom-modal></custom-modal>
     <fast-signup></fast-signup>
     <price-table class="mt-5"></price-table>
     <app class="mt-5 pt-4 pb-4"></app>
