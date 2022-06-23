@@ -18,14 +18,18 @@
     </div>
     <div class="mt-4 mb-2 get-password">
       <label class="mb-1">رمزعبور خود را وارد نمایید :</label>
-      <input v-model="user.newPassword" class="w-100 input-form mt-1" :type="showPass ? 'text' : 'password'"
+      <input v-model="user.newPassword" class="w-100 input-form" :type="showPass ? 'text' : 'password'"
         name="password" />
       <b-icon-eye-fill v-if="!showPass" @click="showPass = true"></b-icon-eye-fill>
       <b-icon-eye-slash-fill v-else @click="showPass = false"></b-icon-eye-slash-fill>
     </div>
+    <div v-if="signupDashView === 'signup'" class="mt-1 mb-2">
+      <label class="mb-1">کد معرف خود را وارد نمایید :</label>
+      <input v-model="user.ref" class="w-100 input-form" type="text" />
+    </div>
     <btn class="mt-4 font-weight-bold" :loading="loading" size="small">
       {{ signupDashView === 'signup' ? 'تکمیل ثبت نام'
-                                        : 'تغییر رمزعبور'
+      : 'تغییر رمزعبور'
       }}
     </btn>
   </form>
@@ -49,7 +53,8 @@
         user: {
           newPassword: '',
           code: '',
-          codeToken: ''
+          codeToken: '',
+          ref: ''
         },
         loading: false,
         countDown: 59,
@@ -117,7 +122,7 @@
         const res = await this.$apiRun({
           auth: false,
           method: 'user_signup',
-          vars: `?token=${this.user.codeToken}&code=${this.user.code}&password=${this.user.newPassword}`
+          vars: `?token=${this.user.codeToken}&code=${this.user.code}&password=${this.user.newPassword}&referral_code=${this.user.ref}`
         })
         this.loading = false;
         if (JSON.parse(res.ok) === true) {

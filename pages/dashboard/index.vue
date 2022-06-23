@@ -1,13 +1,25 @@
 <template>
     <div>
-        sss
+        <VueTradingView :options="{
+            symbol: 'BTCUSDT',
+            style: 1,
+            theme: 'light',
+            locale: 'en',
+            interval: 'D',
+            hide_side_toolbar: false,
+            allow_symbol_change: true
+        }" />
     </div>
 </template>
 
 <script>
-    export default {
-        layout: 'dash'
+  import VueTradingView from 'vue-trading-view';
+  export default {
+    layout: 'dashboard',
+    components: {
+      VueTradingView,
     }
+  }
 </script>
 
 <style lang="scss" scoped>
