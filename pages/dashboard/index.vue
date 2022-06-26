@@ -1,6 +1,6 @@
 <template>
     <div>
-        <VueTradingView :options="{
+        <!-- <VueTradingView :options="{
             symbol: 'BTCUSDT',
             style: 1,
             theme: 'light',
@@ -8,7 +8,7 @@
             interval: 'D',
             hide_side_toolbar: false,
             allow_symbol_change: true
-        }" />
+        }" /> -->
     </div>
 </template>
 

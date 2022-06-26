@@ -1,0 +1,153 @@
+{
+  "brand": {
+    "imgSrc": "/icon.png",
+    "imgAlt": "lorem",
+    "faName": "جوروب",
+    "enName": "joorweb panel"
+  },
+  "heading":[
+      "پنل مدیریت | جوروب" ,
+      "افزودن سفارش | جوروب" ,
+      "مشاهده سفارشات | جوروب" ,
+      "مشاهده سفارش | جوروب" ,
+      "مشاهده تراکنشات | جوروب",
+      "افزودن تیکت | جوروب" ,
+      "مشاهده تیکت ها | جوروب" ,
+      "مشاهده تیکت | جوروب" 
+  ],
+  "sidebar": [
+    {"title": "دشبورد", "link": "/dashboard", "icon": "/img/dashboard/icon/dash.svg" , "submenu" : [] },
+    {"title": "سفارشات", "link": "/dashboard/orders", "icon": "/img/dashboard/icon/basket2.svg" ,
+      "submenu" : [
+        {"title": "مشاهده سفارشات", "link": "/dashboard/orders" } ,
+        {"title": "افزودن سفارش", "link": "/dashboard/orders/new" }
+      ] 
+    } ,
+    {"title": "تیکت ها", "link": "/dashboard/tickets", "icon": "/img/dashboard/icon/chat-left-text.svg" , 
+      "submenu" : [
+        {"title": "مشاهده تیکت ها", "link": "/dashboard/tickets" } ,
+        {"title": "افزودن تیکت", "link": "/dashboard/tickets/new" }
+      ] 
+    } ,
+    {"title": "تراکنش ها", "link": "/dashboard/transactions", "icon": "/img/dashboard/icon/wallet2.svg" , "submenu" : [] }
+  ],
+  "navbarTogglerTitle":[
+    {"title": "اخبار جدید" , "id": "sidebar-msg"},
+    {"title": "اعلانات" , "id": "sidebar-notification"},
+    {"title": "حساب کاربری" , "id": "sidebar-profile"}
+  ],
+  "userInfoDropdown":{
+    "title":["تغییر مشخصات" , "تغییر آدرس"],
+    "userInfo":{
+      "label":["نام :",
+               "نام خانوادگی :",
+               "کد ملی :"
+      ],
+      "btn":"ثبت مشخصات"
+    },
+    "addressInfo":{
+      "label":["استان :",
+               "شهر :",
+               "آدرس محل سکونت :",
+               "کد پستی :"
+      ],
+      "btn":"ثبت آدرس"
+    }
+  },
+  "noData": "هیچ داده ایی برای نمایش موجود نمی باشد...",
+  "overviewCardBtn":"اطلاعات بیشتر...",
+  "orderOptionPanel":{
+    "label":["زمان انقضا :"],
+    "timeType":"روز",
+    "nextBtn":"صفحه بعدی",
+    "preBtn": "صفحه قبلی"
+  },
+  "ticketOptionPanel":{
+    "label":["شماره تیکت :"],
+    "nextBtn":"صفحه بعدی",
+    "preBtn": "صفحه قبلی"
+  },
+  "loginHistory":{
+    "head":{
+      "title": "توصیه امنیتی",
+      "description": "در صورت نمایش  ورود مشکوک به حساب، رمز خود را عوض نمایید..."
+    },
+    "label":["مشخصات",
+             "آیپی دستگاه :"
+    ],
+    "nextBtn":"صفحه بعدی",
+    "preBtn": "صفحه قبلی"
+  },
+  "orderCardPageInfo": ["سفارشات فعال","سفارشات غیرفعال","سفارشات مسدود"],
+  "singleOrder":{
+    "info":{
+      "name": "نام سایت: ",
+      "domain": "دامین :",
+      "theme": "تم انتخابی :",
+      "url": "آدرس اختصاصی : ",
+      "token": "توکن سایت :"
+    },
+    "subdomain":{
+      "title": "لیست آدرس های اضافه شده سایت شما :",
+      "showBtn": "(مشاهده)",
+      "empty": "هیچ ادان دامینی وجود ندارد..."
+    },
+    "service":{
+      "title": "اطلاعات سرویس شما : ",
+      "createTime": "خرید در تاریخ :",
+      "hostSpace": "فضای هاست :",
+      "hostSpaceFull": "فضای پر شده: ",
+      "hostSpaceInfo": "فضای ذخیره سازی : ",
+      "price": "هزینه تمدید سرویس :",
+      "userCount": "تعداد کاربران :",
+      "userCountInfo": "کاربران:"
+    },
+    "transaction":{
+      "title": "لیست تراکنش های این سرویس : "
+    }
+  },
+  "ticketCardPageInfo": ["تیکت های باز","تیکت های پاسخ داده","تیکت های بسته"],
+  "addTicket":{
+    "title": "ثبت درخواست پشتیبانی جدید",
+    "label":[
+        "موضوع تیکت :",
+        "دپارتمان :",
+        "اهمیت :",
+        "سرویس مرتبط :",
+        "پیام :"
+    ],
+    "notif":"توجه: ",
+    "notifMsg":"لورم ایپسوم لورم ایپسوم لورم ایپسوم لورم ایپسوم",
+    "sendBtn":"ارسال تیکت",
+    "resetBtn": "لغو"
+  },
+  "singleTicket":{
+    "subject": "موضوع :",
+    "ticketNum": "شماره تیکت : ",
+    "close": "بستن تیکت",
+    "sendMsg": "ارسال پاسخ",
+    "status": "وضعیت: ",
+    "response": "ارسال پاسخ",
+    "placeholder": "پیام خود را در این قسمت بنویسید...",
+    "wrongTicket":{
+      "title": "تیکت ساخته نشده است",
+      "desc": "یا آدرس صفحه اشتباه وارد شده است..."
+    }
+  },
+  "showTransaction":{
+    "title": "لیست تراکنشات حساب شما :",
+    "count": "تراکنش",
+    "transactionCardPageInfo": ["اعتبار حساب","جمع سفارشات","جمع شارژ حساب"]
+  },
+  "addTransaction":{
+    "label": [
+      "مبلغ شارژ (تومان) :",
+      "توضیحات تراکنش (اختیاری) :"
+    ],
+    "placeholder": [
+      "مقداری که میخواهید حساب خود را شارژ نمایید...",
+      "اگر تراکنش شما توضیحاتی دارد در این قسمت بنویسید..."
+    ],
+    "submitBtn": "اتصال به درگاه پرداخت"
+  }
+}

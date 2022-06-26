@@ -25,7 +25,7 @@ export const mutations = {
 }
 export const actions = {
     async nuxtServerInit({ dispatch }) {
-        await dispatch('pageData/getHomePageData')
+        await dispatch('pageData/getDashboardPageData')
     },
     async getUserInfo() {
         const res = await this.$apiRun({auth: true , havePublicToken: true , method: 'user_info_get' , vars: `&access_level=OWNER` , mut: 'setUserInfo'})
