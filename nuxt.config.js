@@ -38,8 +38,12 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    //https://www.npmjs.com/package/nuxt-clipboard2
+    'nuxt-clipboard2',
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
+    // https://sitemap.nuxtjs.org/guide/setup
+    '@nuxtjs/sitemap',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
@@ -56,7 +60,7 @@ export default {
       '@nuxtjs/recaptcha', {
         hideBadge: true,
         language: 'fa',
-        siteKey: "6LeUuw8cAAAAANTZnp0TjHVu0x5pwVEYk6otRIug", // Better would be from 'process.env.API_KEY' and with '.env' file
+        siteKey: process.env.RECAPTCHA_SITEKEY, // Better would be from 'process.env.API_KEY' and with '.env' file
         version: 2, // Or 3
       }
     ],
@@ -95,7 +99,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'https://joorweb.ir/',
+    baseURL: process.env.BASE_URL,
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

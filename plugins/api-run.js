@@ -5,7 +5,7 @@ export default (context, inject) => {
         // method => name of API Methods
         // vars => API query - (like this => ?name=reza&lastname=soume)
         // mut => name of mutations in Vuex with path - (like this => 'currency/setCurrency')
-        axios.defaults.baseURL = "https://api.faraex.ir/";
+        axios.defaults.baseURL = process.env.BASE_URL;
         let url = '';
         if (obj.auth === true) {
             url += context.store.state.userToken + "/";
@@ -19,7 +19,7 @@ export default (context, inject) => {
         return res.data
     }
         
-    // Inject this.$apiRun({ auth: false, havePublicToken: true, method: 'goods_list_get', vars: '' , mut: '' })
+    // Inject this.$apiRun({ auth: false, method: 'goods_list_get', vars: '' , mut: '' })
     // in Vue, context and store...
     inject('apiRun', apiRun)
 }
