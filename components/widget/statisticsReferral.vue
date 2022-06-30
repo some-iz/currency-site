@@ -37,20 +37,24 @@
             <div>
                 <span>
                     تعداد کل دوستان شما
-                    <strong>
+                    <strong class="pt-2">
+                        {{ $toFarsiNum(11,true) }}
                         <!-- {{ allStatistics.number }} -->
                     </strong>
                 </span>
                 <span>
                     تعداد معاملات دوستان
-                    <strong>
+                    <strong class="pt-2">
+                        {{ $toFarsiNum(11,true) }}
                         <!-- {{ allStatistics.trade }} -->
                     </strong>
                 </span>
                 <span>
                     مجموع کارمزد دریافتی
-                    <strong>
+                    <strong class="pt-2">
+                        {{ $toFarsiNum(11236,true) }}
                         <!-- {{ allStatistics.tradePercentage.toLocaleString() }} -->
+                        <TomanLogo></TomanLogo>
                     </strong>
                 </span>
             </div>
@@ -59,32 +63,33 @@
 </template>
 
 <script>
-import { setTimeout } from 'timers';
+import TomanLogo from './tomanLogo.vue';
 
 export default {
     data() {
         return {
-            path: '',
+            path: "",
             idTextCopy: false,
             linkTextCopy: false,
-        }
+        };
     },
     mounted() {
-        this.path = `https://${window.location.host}`
+        this.path = `https://${window.location.host}`;
     },
     methods: {
         async copySomething(text) {
             try {
                 await this.$copyText(text);
-            } catch (e) {
+            }
+            catch (e) {
                 console.error(e);
             }
         },
         copyText(id) {
             if (id === 1)
-                this.idTextCopy = true
+                this.idTextCopy = true;
             else if (id === 2)
-                this.linkTextCopy = true
+                this.linkTextCopy = true;
             else {
                 this.$fire({
                     title: "کپی شد...",
@@ -94,15 +99,19 @@ export default {
                 });
             }
             setTimeout(() => {
-                this.linkTextCopy = false
-                this.idTextCopy = false
-            }, 2000)
+                this.linkTextCopy = false;
+                this.idTextCopy = false;
+            }, 2000);
         },
     },
+    components: { TomanLogo }
 }
 </script>
 
 <style lang="scss" scoped>
+
+
+
 
 
 .main-ref {
@@ -181,12 +190,13 @@ export default {
                 font-size: 13px;
                 display: flex;
                 flex-direction: column;
-                background: rgba(0, 0, 0, .08);
-                color: red;
-                box-shadow: 0 0 13px rgba(0, 0, 0, .1);
+                background:$black-50;;
+                color: $black-500;
+                box-shadow: 0 0 13px $black-50;
                 padding: 10px 15px;
                 text-align: center;
                 border-radius: 3px;
+                font-weight: 500;
                 strong {
                     overflow-wrap: anywhere;
                     transform: translateY(4px);
