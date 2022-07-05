@@ -56,14 +56,16 @@ export default {
     'nuxt-vue-multiselect',
     //https://i18n.nuxtjs.org/setup
     '@nuxtjs/i18n',
-    [
-      '@nuxtjs/recaptcha', {
-        hideBadge: true,
-        language: 'fa',
-        siteKey: process.env.RECAPTCHA_SITEKEY, // Better would be from 'process.env.API_KEY' and with '.env' file
-        version: 2, // Or 3
-      }
-    ],
+    // [
+    //   '@nuxtjs/recaptcha', {
+    //     hideBadge: true,
+    //     language: 'fa',
+    //     siteKey: process.env.RECAPTCHA_SITEKEY, // Better would be from 'process.env.API_KEY' and with '.env' file
+    //     version: 2, // Or 3
+    //   }
+    // ],
+    // https://alireza-ab.ir/datepicker/installation#
+    ['@alireza-ab/vue-persian-datepicker/nuxt', { PersianDate: true }]
   ],
 
   //https://i18n.nuxtjs.org/setup
