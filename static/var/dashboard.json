@@ -17,19 +17,15 @@
   ],
   "sidebar": [
     {"title": "دشبورد", "link": "/dashboard", "icon": "/img/dashboard/icon/dash.svg" , "submenu" : [] },
+    {"title": "کیف پول شما", "link": "/dashboard/wallet", "icon": "/img/dashboard/icon/wallet2.svg" , "submenu" : [] },
     {"title": "سفارشات", "link": "/dashboard/orders", "icon": "/img/dashboard/icon/basket2.svg" ,
       "submenu" : [
         {"title": "مشاهده سفارشات", "link": "/dashboard/orders" } ,
-        {"title": "افزودن سفارش", "link": "/dashboard/orders/new" }
+        {"title": "افزودن سفارش", "link": "/dashboard/authentication" }
       ] 
     } ,
-    {"title": "تیکت ها", "link": "/dashboard/tickets", "icon": "/img/dashboard/icon/chat-left-text.svg" , 
-      "submenu" : [
-        {"title": "مشاهده تیکت ها", "link": "/dashboard/tickets" } ,
-        {"title": "افزودن تیکت", "link": "/dashboard/tickets/new" }
-      ] 
-    } ,
-    {"title": "تراکنش ها", "link": "/dashboard/transactions", "icon": "/img/dashboard/icon/wallet2.svg" , "submenu" : [] }
+    {"title": "تراکنش ها", "link": "/dashboard/transactions", "icon": "/img/dashboard/icon/cash-stack.svg" , "submenu" : [] },
+    {"title": "دعوت از دوستان", "link": "/dashboard/referral", "icon": "/img/dashboard/icon/people-fill.svg" , "submenu" : [] }
   ],
   "navbarTogglerTitle":[
     {"title": "اخبار جدید" , "id": "sidebar-msg"},

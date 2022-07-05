@@ -1,15 +1,23 @@
 <template>
-  <div>
-
-  </div>
+  <section class="">
+    {{$route.path}}
+  </section>
 </template>
 
 <script>
-  export default {
-
+export default {
+  layout: 'dashboard',
+  components: {},
+  props: [],
+  data() {
+    return {}    
+  },
+  mounted() {
+  },
+  methods: {
   }
+}
 </script>
 
 <style lang="scss" scoped>
-
 </style>
