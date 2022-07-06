@@ -3,7 +3,7 @@
     <div v-for="(step , i) in steps" :key="i" 
       :class="[activeStep >= i ? 'active' : '','col-3 steper d-flex align-items-center justify-content-center']"
     >
-      <div @click="stepSet(i)" class="d-flex flex-column">
+      <div @click="stepSet(i)" class="d-flex flex-column align-items-center">
         <b-icon :icon="step.icon"></b-icon>
         <span class="mt-1">
          {{step.title}}
@@ -24,6 +24,7 @@ export default {
   methods:{
     stepSet(i){
       this.activeStep = i
+      this.$emit('getActiveTab' , i)
     }
   }
 }

@@ -12,7 +12,6 @@
     "lintfix": "prettier --write --list-different ."
   },
   "dependencies": {
-    "@alireza-ab/vue-persian-datepicker": "^2.3.0",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/i18n": "^7.2.2",
@@ -32,6 +31,7 @@
     "vue": "^2.6.14",
     "vue-currency-input": "1.22.5",
     "vue-fake-input": "^1.1.0",
+    "vue-persian-datetime-picker": "2.10.4",
     "vue-server-renderer": "^2.6.14",
     "vue-simple-alert": "^1.1.1",
     "vue-template-compiler": "^2.6.14",

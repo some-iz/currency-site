@@ -63,3 +63,17 @@ a, a:hover{
 .code-input input{
   background: $black-50;
 }
+.vpd-icon-btn{
+  height: 33.5px ;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+.vpd-input-group input{
+  background: $black-50;
+  padding: 6px 7px;
+  border: 2px solid $black-20;
+  font-size: 13px;
+  transition: .3s;
+  border-radius: 7px;
+  color: $black-700;
+}

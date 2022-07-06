@@ -64,8 +64,6 @@ export default {
     //     version: 2, // Or 3
     //   }
     // ],
-    // https://alireza-ab.ir/datepicker/installation#
-    ['@alireza-ab/vue-persian-datepicker/nuxt', { PersianDate: true }]
   ],
 
   //https://i18n.nuxtjs.org/setup
