@@ -2,7 +2,7 @@
     <div class="personal-info row mt-4 pt-2 pt-md-0 mt-md-5 px-0 px-md-2 px-lg-4">
         <div class="col-md-7">
             <label class="w-100 mb-3 font-weight-bold">
-                انتخاب تصویر کارت ملی :
+                انتخاب تصویر سلفی :
                 <file-pond
                     name="file"
                     class="mt-1"
@@ -16,16 +16,16 @@
                     v-bind:files="files"/>
             </label>
             <Btn @click="uploadImg()" class="mt-1 py-2 rounded font-weight-bold" width="full" size="small">
-                ثبت و آپلود تصویر کارت ملی
+                ثبت و آپلود تصویر سلفی
             </Btn>
         </div>
         <div class="img-info col-md-5 px-2 px-md-4 d-flex flex-column align-items-center justify-content-center">
             <span
                 class="status-info mt-4 mt-md-0 d-flex align-items-center justify-content-center font-weight-bold w-100 py-2 rounded px-2 nt-1">
                 <b-icon class="ml-1" icon="file-earmark-plus"></b-icon>
-                در انتظار ثبت تصویر کارت ملی...
+                در انتظار ثبت تصویر سلفی...
             </span>
-            <img draggable="false" loading="lazy" class="img-fluid" src="/img/auth/idcard2.png" alt="">
+            <img draggable="false" loading="lazy" class="img-fluid" src="/img/auth/selfie.png" alt="">
         </div>
     </div>
 </template>
@@ -60,7 +60,8 @@ export default {
     },
     methods:{
         uploadImg(){
-            document.querySelectorAll('.filepond--action-process-item')[0].click()
+            if(document.querySelectorAll('.filepond--action-process-item')[0])
+                document.querySelectorAll('.filepond--action-process-item')[0].click()
         }
     //     async imgUploadResponse(data) {
     //   const result = JSON.parse(data);
