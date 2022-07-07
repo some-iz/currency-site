@@ -1,7 +1,7 @@
 <template>
   <main>
     <fast-signup></fast-signup>
-    <price-table class="mt-5"></price-table>
+    <price-table width="container" class="mt-5 pt-3"></price-table>
     <app class="mt-5 pt-4 pb-4"></app>
     <social-media class="mt-5"></social-media>
   </main>
@@ -19,17 +19,6 @@ export default {
   name: 'IndexPage',
   async fetch() {
     await this.$store.dispatch('currency/getCurrencyList')
-  },
-  data() {
-    return {
-      interval: null
-    }
-  },
-  mounted() {
-    this.interval = setInterval(() => this.$store.dispatch('currency/getCurrencyList'), 10000)
-  },
-  beforeDestroy() {
-    clearInterval(this.interval)
   },
 }
 </script>

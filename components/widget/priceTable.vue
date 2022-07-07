@@ -1,6 +1,6 @@
 <template>
-  <section class="price-table mt-4 pt-3">
-    <div class="container">
+  <section class="price-table">
+    <div :class="width">
       <div class="trade-sec w-100">
         <arz-table :currencyList="currencyList"></arz-table>
       </div>
@@ -11,12 +11,30 @@
 <script>
 import arzTable from './arzTable.vue'
 export default {
+  props: {
+    width: {
+      default: 'container',
+      type: String
+    }
+  },
   components: { arzTable },
+  data() {
+    return {
+      interval: null
+    }
+  },
   computed: {
     currencyList() {
       return this.$store.state.currency.currencyList
     }
-  }
+  },
+  mounted() {
+    this.$store.dispatch('currency/getCurrencyList')
+    this.interval = setInterval(() => this.$store.dispatch('currency/getCurrencyList'), 10000)
+  },
+  beforeDestroy() {
+    clearInterval(this.interval)
+  },
 }
 </script>
 
