@@ -19,19 +19,10 @@
         </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody v-if="!loading">
       <tr class="border-bottom" v-for="(currency , i) in currencyList" v-show="currency.fa_name !== 'تومان'" :key="i">
-        <td class="arz-info">
-          <div class="d-flex align-items-center">
-            <img :src="currency.image" loading="lazy"
-              :alt="currency.fa_name + ' ' + currency.name ">
-            <strong class="d-flex flex-column mr-1">
-              {{currency.fa_name}}
-              <span class="mt-1">
-                {{currency.symbol}}
-              </span>
-            </strong>
-          </div>
+        <td>
+          <currency-show :faName="currency.fa_name" :imgSrc="currency.image" :symbol="currency.symbol"></currency-show>
         </td>
         <td class="font-weight-bold py-4">
           {{ $toFarsiNum(currency.buy_price ,true) }}
@@ -57,14 +48,22 @@
         </td>
       </tr>
     </tbody>
+    <tbody class="loading" v-else>
+      <tr v-for="i in 10" :key="i">
+        <td v-for="i in 5" :key="i" class="py-3">
+          <b-skeleton animation="wave" width="100%"></b-skeleton>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </template>
 
 <script>
 import tomanLogo from './tomanLogo.vue'
+import CurrencyShow from './currencyShow.vue'
 export default {
-  components: { tomanLogo },
-  props: ['currencyList']
+  components: { tomanLogo, CurrencyShow },
+  props: ['currencyList' , 'loading']
 }
 </script>
 
@@ -88,22 +87,6 @@ table{
       cursor: pointer;
       td{
         transition: .2s;
-      }
-      .arz-info{
-          transform: translateY(2px);
-          img{
-              border-radius: 36% 64% 58% 42% / 29% 32% 68% 71%;
-              width: 30px;
-              height: 30px;
-              background: $primary-color;
-              padding: 4px;
-          }
-          strong{
-              span{
-                  color: $black-150;
-                  font-size: 11px;
-              }
-          }
       }
       .action{
         width: 230px;
@@ -138,6 +121,9 @@ table{
     tr:hover{
       background: $black-20;
     }
+  }
+  .loading > tr{
+    cursor: wait !important;
   }
 }
 </style>

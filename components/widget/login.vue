@@ -70,9 +70,9 @@
           })
           return false
         }
-        try {
-          const token = await this.$recaptcha.getResponse()
-          if (token !== null) {
+        // try {
+        //   const token = await this.$recaptcha.getResponse()
+        //   if (token !== null) {
             this.loading = true;
             const res = await this.$apiRun({
               auth: false,
@@ -94,17 +94,17 @@
                 })
               }
             }
-          }
-        } catch (error) {
-          this.$fire({
-            title: "خطای امنیتی!",
-            text: "برای تایید و ادامه ابتدا باید کپچا را حل نمایید...",
-            type: "error",
-            timer: 10000
-          })
-          return false
-        }
-        await this.$recaptcha.reset();
+        //   }
+        // } catch (error) {
+        //   this.$fire({
+        //     title: "خطای امنیتی!",
+        //     text: "برای تایید و ادامه ابتدا باید کپچا را حل نمایید...",
+        //     type: "error",
+        //     timer: 10000
+        //   })
+        //   return false
+        // }
+        // await this.$recaptcha.reset();
       },
       async userLogin() {
         this.loading = true;
@@ -115,24 +115,10 @@
         })
         this.loading = false;
         if (JSON.parse(res.ok) === true) {
-          // this.$cookiz.set('username', res.data[0].username, {
-          //   maxAge: 2147483647,
-          //   path: '/'
-          // })
-          // this.$cookiz.set('token', res.data[0].token, {
-          //   maxAge: 2147483647,
-          //   path: '/'
-          // })
-          // this.$cookiz.set('role', res.data[0].access_level, {
-          //   maxAge: 2147483647,
-          //   path: '/'
-          // })
-          // this.$store.commit('changeUserTokenAndPhone', {
-          //   token: res.data[0].token,
-          //   phone: res.data[0].username,
-          //   publicToken: res.data[0].store_token,
-          //   role: res.data[0].access_level
-          // })
+          this.$cookiz.set('username', res.data[0].username, { maxAge: 2147483647,path: '/'})
+          this.$cookiz.set('token', res.data[0].token, {maxAge: 2147483647,path: '/'})
+          this.$store.commit('changeUserTokenAndPhone', {token: res.data[0].token, phone: res.data[0].username,})
+          this.$router.push('/dashboard')
         } else {
           this.$fire({
             title: res.error[0].fa_title,

@@ -29,23 +29,18 @@
             </label>
             <Btn class="mt-4 py-2 rounded font-weight-bold" width="full" size="small">ثبت آدرس</Btn>
         </div>
-        <div class="img-info col-md-5 px-2 px-md-4 d-flex flex-column align-items-center justify-content-center">
-            <span
-                class="status-info mt-4 mt-md-0 d-flex align-items-center justify-content-center font-weight-bold w-100 py-2 rounded px-2 nt-1">
-                <b-icon class="ml-1" icon="file-earmark-plus"></b-icon>
-                در انتظار ثبت آدرس...
-            </span>
-            <img draggable="false" loading="lazy" class="img-fluid" src="/img/auth/location.png" alt="">
-        </div>
+        <user-info-img width="col-md-5" :status="1" title="در انتظار ثبت آدرس..." imgSrc="/img/auth/location.png" imgAlt="address"></user-info-img>
     </div>
 </template>
 
 <script>
 import Btn from './btn.vue'
+import UserInfoImg from './userInfoImg.vue'
 export default {
     layout: 'dashboard',
     components: {
-    Btn
+    Btn,
+        UserInfoImg
 },
     props: [],
     data() {
@@ -62,21 +57,6 @@ export default {
     label , div{
       font-size: 13px;
       color: $black-600;
-    }
-  }
-  .img-info{
-    img{
-      max-width: 440px;
-      width: 100%;
-    }
-    .status-info{
-      background: $red-50;
-      border: 2px solid $red-100;
-      font-size: 14px;
-      color: $black-600;
-      svg{
-        font-size: 20px;
-      }
     }
   }
 }

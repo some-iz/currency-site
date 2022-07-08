@@ -126,29 +126,10 @@
         })
         this.loading = false;
         if (JSON.parse(res.ok) === true) {
-          // this.$cookiz.set('username', res.data[0].username, {
-          //   maxAge: 2147483647,
-          //   path: '/'
-          // })
-          // this.$cookiz.set('token', res.data[0].token, {
-          //   maxAge: 2147483647,
-          //   path: '/'
-          // })
-          // this.$cookiz.set('public_token', res.data[0].store_token, {
-          //   maxAge: 2147483647,
-          //   path: '/'
-          // })
-          // this.$cookiz.set('role', res.data[0].access_level, {
-          //   maxAge: 2147483647,
-          //   path: '/'
-          // })
-          // this.$store.commit('changeUserTokenAndPhone', {
-          //   token: res.data[0].token,
-          //   phone: res.data[0].username,
-          //   publicToken: res.data[0].store_token,
-          //   role: res.data[0].access_level
-          // })
-          // this.$router.push('/account')
+          this.$cookiz.set('username', res.data[0].username, { maxAge: 2147483647,path: '/'})
+          this.$cookiz.set('token', res.data[0].token, {maxAge: 2147483647,path: '/'})
+          this.$store.commit('changeUserTokenAndPhone', {token: res.data[0].token, phone: res.data[0].username,})
+          this.$router.push('/dashboard')
         } else {
           this.$fire({
             title: res.error[0].fa_title,
@@ -167,24 +148,10 @@
         })
         this.loading = false;
         if (JSON.parse(res.ok) === true) {
-          // this.$cookiz.set('username', res.data[0].username, {
-          //   maxAge: 2147483647,
-          //   path: '/'
-          // })
-          // this.$cookiz.set('token', res.data[0].token, {
-          //   maxAge: 2147483647,
-          //   path: '/'
-          // })
-          // this.$cookiz.set('public_token', res.data[0].token, {
-          //   maxAge: 2147483647,
-          //   path: '/'
-          // })
-          // this.$store.commit('changeUserTokenAndPhone', {
-          //   token: res.data[0].token,
-          //   phone: res.data[0].username,
-          //   publicToken: res.data[0].store_token
-          // })
-          // this.$router.push('/dashboard')
+          this.$cookiz.set('username', res.data[0].username, { maxAge: 2147483647,path: '/'})
+          this.$cookiz.set('token', res.data[0].token, {maxAge: 2147483647,path: '/'})
+          this.$store.commit('changeUserTokenAndPhone', {token: res.data[0].token, phone: res.data[0].username,})
+          this.$router.push('/dashboard')
         } else {
           this.$fire({
             title: res.error[0].fa_title,

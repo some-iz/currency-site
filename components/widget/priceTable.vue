@@ -2,7 +2,7 @@
   <section class="price-table">
     <div :class="width">
       <div class="trade-sec w-100">
-        <arz-table :currencyList="currencyList"></arz-table>
+        <arz-table :loading="ssr === true ? false : loading" :currencyList="currencyList"></arz-table>
       </div>
     </div>
   </section>
@@ -15,12 +15,17 @@ export default {
     width: {
       default: 'container',
       type: String
+    },
+    ssr: {
+      default: false,
+      type: Boolean
     }
   },
   components: { arzTable },
   data() {
     return {
-      interval: null
+      interval: null,
+      loading: true,
     }
   },
   computed: {
@@ -30,6 +35,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('currency/getCurrencyList')
+    this.loading = false
     this.interval = setInterval(() => this.$store.dispatch('currency/getCurrencyList'), 10000)
   },
   beforeDestroy() {

@@ -29,7 +29,7 @@
 <script>
 export default {
   name: 'dashboard',
-//   middleware: ['getDashboardData', 'authenticated' ],
+  middleware: 'authenticated',
   data() {
     return {
       sidebar: false,

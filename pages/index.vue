@@ -1,7 +1,7 @@
 <template>
   <main>
     <fast-signup></fast-signup>
-    <price-table width="container" class="mt-5 pt-3"></price-table>
+    <price-table width="container" :ssr="true" class="mt-5 pt-3"></price-table>
     <app class="mt-5 pt-4 pb-4"></app>
     <social-media class="mt-5"></social-media>
   </main>
