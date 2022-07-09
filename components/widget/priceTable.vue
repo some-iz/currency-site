@@ -33,8 +33,8 @@ export default {
       return this.$store.state.currency.currencyList
     }
   },
-  mounted() {
-    this.$store.dispatch('currency/getCurrencyList')
+  async mounted() {
+    await this.$store.dispatch('currency/getCurrencyList')
     this.loading = false
     this.interval = setInterval(() => this.$store.dispatch('currency/getCurrencyList'), 10000)
   },

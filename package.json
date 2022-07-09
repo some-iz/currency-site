@@ -39,6 +39,7 @@
     "vue-server-renderer": "^2.6.14",
     "vue-simple-alert": "^1.1.1",
     "vue-template-compiler": "^2.6.14",
+    "vue-the-mask": "^0.11.1",
     "vue-trading-view": "^1.0.1",
     "vue-upload-drop-images": "^1.0.7",
     "vue-upload-file": "^1.1.0",

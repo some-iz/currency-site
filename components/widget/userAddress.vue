@@ -39,13 +39,12 @@ import UserInfoImg from './userInfoImg.vue'
 export default {
     layout: 'dashboard',
     components: {
-    Btn,
+        Btn,
         UserInfoImg
-},
+    },
     props: [],
     data() {
         return {
-            date: null
         }
     },
 }
