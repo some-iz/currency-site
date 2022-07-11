@@ -1,31 +1,37 @@
 <template>
   <section class="dropdown-body w-100">
-    <div class="dropdown-head font-weight-bold d-flex align-items-center justify-content-between py-3 px-2 mb-2">
-      کیف پول شما :
+    <div v-if="haveHead"
+      class="dropdown-head font-weight-bold d-flex align-items-center justify-content-between py-3 px-2 mb-2">
+      {{title}} :
       <span class="ml-1">
-        ۲۰ ارز
+        ۲۰
+        {{counterTitle}}
       </span>
     </div>
     <div v-for="i in 3" :key="i" class="dropdown mb-2">
       <div @click="activeDropdown === i ? activeDropdown = 0 : activeDropdown = i"
         class="item-dropdown d-flex align-items-center justify-content-between py-2 px-2">
-        <currency-show :isSecondBg="true" faName="بیت کوین"
+        <currency-show faName="بیت کوین"
           imgSrc="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/45_Bitcoin_logo_logos-512.png"
-          symbol="BTC"></currency-show>
-        <div class="info">
+          symbol="BTC">
+        </currency-show>
+        <div v-if="base === 'primary'" class="info">
           موجودی :
           ۲۲۲۲۲
         </div>
-        <div class="info">
+        <div v-if="base === 'primary'" class="info">
           موجودی :
           ۲۲۲۲۲
         </div>
-        <b-icon icon="caret-down-fill"></b-icon>
+        <b-icon :class="activeDropdown === i ? 'rotate' : ''" icon="caret-down-fill"></b-icon>
       </div>
       <transition name="slide-fade">
-        <div v-if="activeDropdown === i" class="collapse-dropdown py-3 px-2 bg-warning">
-          <div v-for="i in 3" :key="i" class="item-collapse-dropdown text-center">
+        <div v-if="activeDropdown === i" :class="[haveSlot ? '' : 'collapse-dropdown', 'py-3 px-2']">
+          <div v-if="!haveSlot" v-for="i in 3" :key="i" class="item-collapse-dropdown text-center">
             <btn class="px-4 py-2" size="small">واریز</btn>
+          </div>
+          <div v-if="haveSlot">
+            <slot></slot>
           </div>
         </div>
       </transition>
@@ -37,11 +43,37 @@
 import CurrencyShow from '~/components/widget/currencyShow.vue'
 import Btn from './btn.vue';
 export default {
-  props: [
-    "title",
-    "counterTitle",
-    "dropdownData",
-  ],
+  props: {
+    title: {
+      type : String,
+    },
+    counterTitle: {
+      type : String,
+    },
+    dropdownData: {
+      type: String,
+    },
+    base: {
+      default: 'primary',
+      type : String
+    },
+    haveHead: {
+      default: true,
+      type: Boolean
+    },
+    title: {
+      default: 'کیف پول شما',
+      type: String
+    },
+    counterTitle: {
+      default: 'ارز',
+      type: String
+    },
+    haveSlot: {
+      default: false,
+      type: Boolean
+    },
+  },
   components: { Btn,CurrencyShow },
   data() {
     return {
@@ -65,22 +97,25 @@ export default {
     background: $black-70 !important;
     border-radius: 6px;
     .item-dropdown{
-      background: $primary-color;
+      background: $black-20;
       border-radius: 6px;
       cursor: pointer;
       .info{
         font-size: 14px;
         font-weight: 500;
       }
+      svg{
+        transition: .35s;
+      }
+      .rotate{
+        transform: rotateZ(180deg);
+      }
     }
     .collapse-dropdown{
-      background: transparent !important;
       display: grid;
       grid-template-columns: 1fr 1fr;
       column-gap: 5px;
       row-gap: 10px;
-      .item-collapse-dropdown{
-      }
     }
   }
 }

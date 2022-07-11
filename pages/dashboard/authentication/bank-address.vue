@@ -1,7 +1,7 @@
 <template>
     <section class="container-fluid">
         <div class="row mt-3 px-3">
-            <div class="col-md-6 px-0">
+            <div class="col-md-7 px-0">
                 <h4>
                     <b-icon icon="plus"></b-icon>
                     افزودن کارت بانکی جدید
@@ -58,8 +58,7 @@
                     </div>
                 </div> -->
             </div>
-            <div class="col-md-6">
-            </div>
+
         </div>
     </section>
 </template>
@@ -69,7 +68,7 @@ import { TheMask } from 'vue-the-mask'
 import Btn from '~/components/widget/btn.vue'
 export default {
     layout: 'dashboard',
-    components: { TheMask,Btn },
+    components: { TheMask, Btn },
     data() {
         return {
             step: 1,
