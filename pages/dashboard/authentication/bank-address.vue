@@ -58,7 +58,38 @@
                     </div>
                 </div> -->
             </div>
-
+            <div class="col-md-5">
+                <h5 class="font-weight-bold">
+                    کارت های بانکی شما :
+                </h5>
+                <div v-for="i in 4" :key="i" class="bank-address p-2 mb-2">
+                    <div class="d-flex mb-1 justify-content-between align-items-center">
+                        <span class="info">
+                            <span>1</span>
+                            حساب تست
+                        </span>
+                        <btn class="pb-1 pt-0 px-1 rounded" size="small">
+                            <b-icon icon="trash"></b-icon>
+                        </btn>
+                    </div>
+                    <div class="d-flex mb-1 justify-content-between align-items-center">
+                        <span class="text">
+                            کارت
+                        </span>
+                        <span class="info">
+                            5892-1232-5559-8888
+                        </span>
+                    </div>
+                    <div class="d-flex mb-1  justify-content-between align-items-center">
+                        <span class="text">
+                            شبا
+                        </span>
+                        <span class="info">
+                            IR-34234-324-324-324-324-234234
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </template>
@@ -296,6 +327,19 @@ export default {
         button {
             opacity: 0.8;
         }
+    }
+}
+.bank-address {
+    background: $black-50;
+    border: 2px solid $black-50;
+    border-radius: 6px;
+    .info,.text {
+        font-size: 14px;
+        font-weight: 500;
+        color: $black-600;
+    }
+    .info {
+        font-weight: bold;
     }
 }
 </style>
