@@ -18,13 +18,14 @@
   "sidebar": [
     {"title": "دشبورد", "link": "/dashboard", "icon": "/img/dashboard/icon/dash.svg" , "submenu" : [] },
     {"title": "کیف پول شما", "link": "/dashboard/wallet", "icon": "/img/dashboard/icon/wallet2.svg" , "submenu" : [] },
-    {"title": "سفارشات", "link": "/dashboard/orders", "icon": "/img/dashboard/icon/basket2.svg" ,
+    {"title": "سفارشات", "link": "/dashboard/orders", "icon": "/img/dashboard/icon/basket2.svg" , "submenu" : [] } ,
+    {"title": "تراکنش ها", "link": "/dashboard/transactions", "icon": "/img/dashboard/icon/cash-stack.svg" , 
       "submenu" : [
-        {"title": "مشاهده سفارشات", "link": "/dashboard/orders" } ,
-        {"title": "افزودن سفارش", "link": "/dashboard/authentication" }
+        {"title": "واریز به حساب", "link": "/dashboard/transactions/deposit" } ,
+        {"title": "برداشت از حساب", "link": "/dashboard/transactions/withdraw" }
       ] 
-    } ,
-    {"title": "تراکنش ها", "link": "/dashboard/transactions", "icon": "/img/dashboard/icon/cash-stack.svg" , "submenu" : [] },
+    },
+    {"title": "حساب کاربری", "link": "/dashboard/authentication", "icon": "/img/dashboard/icon/person-rolodex.svg" , "submenu" : [] },
     {"title": "دعوت از دوستان", "link": "/dashboard/referral", "icon": "/img/dashboard/icon/people-fill.svg" , "submenu" : [] }
   ],
   "navbarTogglerTitle":[

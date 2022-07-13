@@ -56,7 +56,7 @@ export default {
 <style lang="scss" scoped>
 .personal-info{
   >div{
-    label , div{
+    div{
       font-size: 13px;
       color: $black-600;
     }
