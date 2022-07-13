@@ -30,7 +30,7 @@
         </label>
         <Btn class="mt-4 py-2 rounded font-weight-bold" width="full" size="small">ثبت درخواست برداشت</Btn>
       </div>
-      <user-info-img width="col-md-5" :status="1" title="برداشت از حساب کاربری" imgSrc="/img/auth/preview.png" imgAlt="info"></user-info-img>
+      <user-info-img width="col-md-5" :status="1" title="برداشت از حساب کاربری" imgSrc="/img/transaction/withdraw.png" imgAlt="info"></user-info-img>
     </div>
   </div>
 </template>
@@ -38,7 +38,6 @@
 <script>
 import Btn from '~/components/widget/btn.vue'
 import userInfoImg from '~/components/widget/userInfoImg.vue'
-
 export default {
   components: { userInfoImg, Btn },
     layout: 'dashboard',
