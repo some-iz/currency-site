@@ -87,16 +87,17 @@ export default {
 <style lang="scss" scoped>
 .all-ref-link {
     cursor: default;
-    background: rgba(0, 0, 0, .05);
+    background: $black-20;
     margin-top: 30px;
-    border: 3px solid rgba(0, 0, 0, .09);
+    border: 3px solid $black-50;
     border-radius: 10px;
     padding: 10px;
     h3 {
         margin: 0;
         padding-top: 10px;
         padding-bottom: 15px;
-        border-bottom: 3px solid rgba(0, 0, 0, .15);
+        border-bottom: 3px solid $black-70;
+        color: $black-600;
     }
     .head-table {
         display: grid;
@@ -104,10 +105,11 @@ export default {
         grid-template-columns: 1fr 3fr 1fr 1fr 1fr 2fr;
         margin-top: 10px;
         margin-bottom: 10px;
-        font-size: 15px;
-        border-bottom: 3px solid rgba(0, 0, 0, .1);
+        font-size: 14px;
+        font-weight: 400;
+        border-bottom: 3px solid $black-50;
         padding-bottom: 7px;
-        color: rgba(0, 0, 0, .4);
+        color: $black-500;
         span:not(span:first-child) {
             text-align: center;
             overflow-wrap: anywhere;

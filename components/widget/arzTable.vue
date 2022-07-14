@@ -1,7 +1,26 @@
 <template>
   <table class="table w-100">
     <thead>
-      <tr>
+      <tr v-if="isWallet">
+        <th class="py-3 pr-3">
+          # ارز
+        </th>
+        <th class="py-3">
+          موجودی شما
+        </th>
+        <th class="py-3">
+          معادل
+          (<toman-logo></toman-logo>)
+        </th>
+        <th class="py-3">
+          معادل 
+          (<b-icon icon="currency-dollar"></b-icon>)
+        </th>
+        <th class="text-center py-3">
+          عملیات
+        </th>
+      </tr>
+      <tr v-else>
         <th class="py-3 pr-3">
           # ارز
         </th>
@@ -24,16 +43,26 @@
         <td>
           <currency-show :faName="currency.fa_name" :imgSrc="currency.image" :symbol="currency.symbol"></currency-show>
         </td>
-        <td class="font-weight-bold py-4">
+
+        <td v-if="isWallet" class="font-weight-bold py-4">
+          {{ $toFarsiNum(1 ,true) }}
+        </td>
+        <td v-else class="font-weight-bold py-4">
           {{ $toFarsiNum(currency.buy_price ,true) }}
           <toman-logo></toman-logo>
         </td>
+        
         <td class="font-weight-bold py-4">
           {{ $toFarsiNum(currency.sell_price ,true) }}
           <toman-logo></toman-logo>
         </td>
-        <td dir="ltr" class="up py-4">
-          % {{ $toFarsiNum('+16') }}
+
+        <td v-if="isWallet" class="py-4">
+          {{ Number((currency.sell_price/currencyList[2].sell_price)).toLocaleString('fa-IR') }}<b-icon icon="currency-dollar"></b-icon>
+        </td>
+        <td v-else dir="ltr" class="up py-4">
+          <b-icon class="percent" icon="percent"></b-icon>
+           {{ $toFarsiNum('+16') }}
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
             class="ml-1 bi bi-graph-up-arrow" viewBox="0 0 16 16">
             <path fill-rule="evenodd"
@@ -63,7 +92,7 @@ import tomanLogo from './tomanLogo.vue'
 import CurrencyShow from './currencyShow.vue'
 export default {
   components: { tomanLogo, CurrencyShow },
-  props: ['currencyList' , 'loading']
+  props: ['currencyList' , 'loading' , 'isWallet']
 }
 </script>
 
@@ -110,6 +139,9 @@ table{
       .up{
         svg{
           color: $success-color;
+        }
+        .percent{
+          color: $black-700;
         }
       }
       .down{
