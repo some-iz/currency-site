@@ -1,15 +1,13 @@
 <template>
-  <section class="exchange mt-4 pt-3">
-    <div class="container">
-      <div class="trade-sec w-100">
-        <div class="head-trade d-flex font-weight-bold">
-          <span class="py-3 px-4 active">
-            خرید از ربیت
-          </span>
-          <span class="py-3 px-4">
-            فروش به ربیت
-          </span>
-        </div>
+  <section class="exchange">
+    <div class="trade-sec w-100">
+      <div class="head-trade d-flex font-weight-bold">
+        <span class="py-3 px-4 active">
+          خرید از ربیت
+        </span>
+        <span class="py-3 px-4">
+          فروش به ربیت
+        </span>
       </div>
     </div>
   </section>
@@ -23,7 +21,7 @@
 
 <style lang="scss" scoped>
 .exchange{
-  min-height: 650px;
+  // min-height: 650px;
   width: 100%;
   .trade-sec{
     height: 200px;
