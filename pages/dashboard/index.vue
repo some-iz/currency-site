@@ -11,7 +11,6 @@ import PriceTable from '~/components/widget/priceTable.vue';
 export default {
   layout: 'dashboard',
   components: {
-    VueTradingView,
     PriceTable,
     AlertBox,
   }
