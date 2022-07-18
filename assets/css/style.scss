@@ -4,11 +4,11 @@
 *:not(i){
   font-family: IRANSans , "IRANSans";
 }
-html::-webkit-scrollbar {
+html::-webkit-scrollbar , .vs__dropdown-menu::-webkit-scrollbar {
   width: 9px;
   background: $black-100;
 }
-html::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb , .vs__dropdown-menu::-webkit-scrollbar-thumb {
   background: $black-200;
 }
 html , body{
@@ -84,4 +84,26 @@ a, a:hover{
 label{
   font-size: 13px;
   color: $black-600;
+}
+.vs__dropdown-toggle{
+  border: 0 !important;
+}
+.vs__open-indicator{
+  transform: translateY(2px) scale(.8) translateX(-3px) !important;
+}
+.vs--open .vs__open-indicator{
+  transform: translateY(4px) scale(.8) translateX(-3px) rotateZ(180deg) !important;
+}
+.vs__dropdown-menu{
+  scrollbar-width: thin;
+  max-height: 300px !important;
+}
+.vs__dropdown-menu li{
+  padding: 10px 5px;
+  font-size:13px;
+  font-weight: bold;
+}
+.vs__selected{
+  font-size:13px;
+  font-weight: bold;
 }

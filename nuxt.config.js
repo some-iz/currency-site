@@ -64,6 +64,7 @@ export default {
         version: 2, // Or 3
       }
     ],
+    'vue-currency-input/nuxt',
   ],
 
   //https://i18n.nuxtjs.org/setup

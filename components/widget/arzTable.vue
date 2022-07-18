@@ -13,7 +13,7 @@
           (<toman-logo></toman-logo>)
         </th>
         <th class="py-3">
-          معادل 
+          معادل
           (<b-icon icon="currency-dollar"></b-icon>)
         </th>
         <th class="text-center py-3">
@@ -45,24 +45,25 @@
         </td>
 
         <td v-if="isWallet" class="font-weight-bold py-4">
-          {{ $toFarsiNum(1 ,true) }}
+          {{ $toFarsiNum(currency.balance ,true) }}
         </td>
         <td v-else class="font-weight-bold py-4">
           {{ $toFarsiNum(currency.buy_price ,true) }}
           <toman-logo></toman-logo>
         </td>
-        
+
         <td class="font-weight-bold py-4">
-          {{ $toFarsiNum(currency.sell_price ,true) }}
+          <!-- {{ $toFarsiNum(currency.sell_price ,true) }} -->
           <toman-logo></toman-logo>
         </td>
 
         <td v-if="isWallet" class="py-4">
-          {{ Number((currency.sell_price/currencyList[2].sell_price)).toLocaleString('fa-IR') }}<b-icon icon="currency-dollar"></b-icon>
+          <!-- {{ Number((currency.sell_price/currencyList[2].sell_price)).toLocaleString('fa-IR') }} -->
+          <b-icon icon="currency-dollar"></b-icon>
         </td>
         <td v-else dir="ltr" class="up py-4">
           <b-icon class="percent" icon="percent"></b-icon>
-           {{ $toFarsiNum('+16') }}
+          {{ $toFarsiNum('+16') }}
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
             class="ml-1 bi bi-graph-up-arrow" viewBox="0 0 16 16">
             <path fill-rule="evenodd"
@@ -92,7 +93,7 @@ import tomanLogo from './tomanLogo.vue'
 import CurrencyShow from './currencyShow.vue'
 export default {
   components: { tomanLogo, CurrencyShow },
-  props: ['currencyList' , 'loading' , 'isWallet']
+  props: ['currencyList', 'loading', 'isWallet']
 }
 </script>
 

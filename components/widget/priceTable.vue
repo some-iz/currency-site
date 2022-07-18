@@ -2,7 +2,7 @@
   <section class="price-table">
     <div :class="width">
       <div class="trade-sec w-100">
-        <arz-table :isWallet="isWallet" :loading="ssr === true ? false : loading" :currencyList="currencyList"></arz-table>
+        <arz-table :isWallet="isWallet" :loading="ssr === true ? false : loading" :currencyList="isWallet ? userWallet : currencyList"></arz-table>
       </div>
     </div>
   </section>
@@ -23,7 +23,11 @@ export default {
     isWallet: {
       default: false,
       type: Boolean
-    }
+    },
+    userWallet: {
+      default: [],
+      type: Array
+    },
   },
   components: { arzTable },
   data() {
@@ -38,10 +42,11 @@ export default {
     }
   },
   async mounted() {
-    if(this.currencyList.length === 0)
+    if(this.currencyList.length === 0 && !this.isWallet)
       await this.$store.dispatch('currency/getCurrencyList')
     this.loading = false
-    this.interval = setInterval(() => this.$store.dispatch('currency/getCurrencyList'), 10000)
+    if (!this.isWallet)
+      this.interval = setInterval(() => this.$store.dispatch('currency/getCurrencyList'), 10000)
   },
   beforeDestroy() {
     clearInterval(this.interval)
