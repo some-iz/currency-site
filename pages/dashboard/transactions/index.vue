@@ -1,17 +1,9 @@
 <template>
   <section class="container-fluid">
-    <customTable
-      class="mt-3"
-      :loadingTable="loadingUsersList"
-      :tableData="data" 
-      :tableHeadItems="tableHeadItems" 
-      :tableKeyItems="tableKeyItems" 
-      :haveRoutePush="true" 
-      :indexFarsiItemTable="indexFarsiItemTable" 
-      :haveCommaFarsiItemTable="haveCommaFarsiItemTable" 
-      :ltrDir="ltrDir" 
-      :tableAction="tableAction"
-    />
+    {{ userFiatTransaction }}ss
+    <customTable  class="mt-3" :loadingTable="loadingUsersList" :tableData="data" :tableHeadItems="tableHeadItems"
+      :tableKeyItems="tableKeyItems" :haveRoutePush="false" :indexFarsiItemTable="indexFarsiItemTable"
+      :haveCommaFarsiItemTable="haveCommaFarsiItemTable" :ltrDir="ltrDir" :tableAction="tableAction" />
   </section>
 </template>
 
@@ -38,7 +30,13 @@ export default {
       tableAction: ['action','phone_number'],
     }
   },
-  mounted() {
+  async mounted() {
+    await this.$store.dispatch('transaction/getUserFiatTransaction')
+  },
+  computed: {
+    userFiatTransaction() {
+      return this.$store.state.transaction.userFiatTransaction
+    }
   },
   methods: {
   }

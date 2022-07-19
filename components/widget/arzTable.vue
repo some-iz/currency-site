@@ -39,27 +39,29 @@
       </tr>
     </thead>
     <tbody v-if="!loading">
-      <tr class="border-bottom" v-for="(currency , i) in currencyList" v-show="currency.fa_name !== 'تومان'" :key="i">
+      <tr class="border-bottom" v-for="(currency , i) in currencyList" :key="i">
         <td>
           <currency-show :faName="currency.fa_name" :imgSrc="currency.image" :symbol="currency.symbol"></currency-show>
         </td>
 
         <td v-if="isWallet" class="font-weight-bold py-4">
-          {{ $toFarsiNum(currency.balance ,true) }}
+          {{ Number(currency.balance).toLocaleString('fa-IR' ,{minimumFractionDigits: 0,maximumFractionDigits: 10,}) }}
         </td>
         <td v-else class="font-weight-bold py-4">
-          {{ $toFarsiNum(currency.buy_price ,true) }}
+          {{ Number(currency.buy_price).toLocaleString('fa-IR' ,{minimumFractionDigits: 0,maximumFractionDigits: 0,}) }}
           <toman-logo></toman-logo>
         </td>
 
-        <td class="font-weight-bold py-4">
-          <!-- {{ $toFarsiNum(currency.sell_price ,true) }} -->
+        <td v-if="isWallet" class="font-weight-bold py-4">
+          {{ Number((currency.sell_price * currency.balance)).toLocaleString('fa-IR',{minimumFractionDigits: 0,maximumFractionDigits: 0,}) }}<toman-logo></toman-logo>
+        </td>
+        <td v-else class="font-weight-bold py-4">
+          {{ Number(currency.sell_price).toLocaleString('fa-IR',{minimumFractionDigits: 0,maximumFractionDigits: 0,}) }}<toman-logo></toman-logo>
           <toman-logo></toman-logo>
         </td>
 
         <td v-if="isWallet" class="py-4">
-          <!-- {{ Number((currency.sell_price/currencyList[2].sell_price)).toLocaleString('fa-IR') }} -->
-          <b-icon icon="currency-dollar"></b-icon>
+          {{ Number((currency.price * currency.balance)).toLocaleString('fa-IR') }}<b-icon icon="currency-dollar"></b-icon>
         </td>
         <td v-else dir="ltr" class="up py-4">
           <b-icon class="percent" icon="percent"></b-icon>
@@ -70,13 +72,14 @@
               d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z" />
           </svg>
         </td>
-        <td class="text-center action py-4">
-          <span class="buy p-1 px-2 rounded">خرید</span>
-          <span class="sell p-1 px-2 rounded">فروش</span>
+        <td class="text-left action py-4">
+          <span class="buy p-1 px-2 rounded" v-if="currency.fa_name !== 'تومان'">خرید</span>
+          <span class="sell p-1 px-2 rounded" v-if="currency.fa_name !== 'تومان'">فروش</span>
           <span class="buy p-1 px-2 rounded">واریز</span>
           <span class="sell p-1 px-2 rounded">برداشت</span>
         </td>
       </tr>
+      
     </tbody>
     <tbody class="loading" v-else>
       <tr v-for="i in 10" :key="i">

@@ -24,10 +24,10 @@ export default {
       default: false,
       type: Boolean
     },
-    userWallet: {
-      default: [],
-      type: Array
-    },
+    customAction: {
+      default: 'wallet/getUserWallet',
+      type: String
+    }
   },
   components: { arzTable },
   data() {
@@ -39,11 +39,16 @@ export default {
   computed: {
     currencyList() {
       return this.$store.state.currency.currencyList
+    },
+    userWallet() {
+      return this.$store.state.wallet.userWallet
     }
   },
   async mounted() {
     if(this.currencyList.length === 0 && !this.isWallet)
       await this.$store.dispatch('currency/getCurrencyList')
+    if (this.userWallet.length === 0 && this.isWallet)
+      await this.$store.dispatch(`${this.customAction}`)
     this.loading = false
     if (!this.isWallet)
       this.interval = setInterval(() => this.$store.dispatch('currency/getCurrencyList'), 10000)
