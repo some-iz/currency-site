@@ -1,45 +1,43 @@
 <template>
   <section class="container-fluid">
-    {{ userFiatTransaction }}ss
-    <customTable  class="mt-3" :loadingTable="loadingUsersList" :tableData="data" :tableHeadItems="tableHeadItems"
-      :tableKeyItems="tableKeyItems" :haveRoutePush="false" :indexFarsiItemTable="indexFarsiItemTable"
-      :haveCommaFarsiItemTable="haveCommaFarsiItemTable" :ltrDir="ltrDir" :tableAction="tableAction" />
+    <tabbar :tabItems="['1' , '1']"></tabbar>
+    <customTable  class="mt-3"
+      :loadingTable="loadingTransaction" 
+      :tableData="userFiatTransaction" 
+      :tableHeadItems="tableHeadItems"
+      :tableKeyItems="tableKeyItems"
+      :indexFarsiItemTable="indexFarsiItemTable"
+      :haveCommaFarsiItemTable="haveCommaFarsiItemTable" 
+      :ltrDir="ltrDir" :tableAction="tableAction" ></customTable>
   </section>
 </template>
 
 <script>
 import CustomTable from '~/components/widget/customTable.vue'
+import Tabbar from '~/components/widget/tabbar.vue'
 export default {
   layout: 'dashboard',
-  components: { CustomTable },
+  components: { CustomTable, Tabbar },
   props: [],
   data() {
     return {
-      data : [
-        {name: "سیبیسب", admin: "سیبسی", action: "/admin-panel/users/", status: "سیبسیب", national_id: "سیبسیبسیب", phone_number: "سیبسبسی"},
-        {name: "سیبیسب", admin: "سیبسی", action: "/admin-panel/users/", status: "سیبسیب", national_id: "سیبسیبسیب", phone_number: "سیبسبسی"},
-        {name: "سیبیسب", admin: "سیبسی", action: "/admin-panel/users/", status: "سیبسیب", national_id: "سیبسیبسیب", phone_number: "سیبسبسی"},
-        {name: "سیبیسب", admin: "سیبسی", action: "/admin-panel/users/", status: "سیبسیب", national_id: "سیبسیبسیب", phone_number: "سیبسبسی"},
-        {name: "سیبیسب", admin: "سیبسی", action: "/admin-panel/users/", status: "سیبسیب", national_id: "سیبسیبسیب", phone_number: "سیبسبسی"},
-      ],
-      tableHeadItems: ['یسبسی', 'سیبسیب', 'سیبیس', 'یسبسیب' , 'سیبسیب'],
-      tableKeyItems: ['name'  , 'admin' , 'national_id' , 'phone_number' , 'status'],
-      indexFarsiItemTable: [false, false, true, true,false],
-      haveCommaFarsiItemTable: [false, false, false, false, false],
-      ltrDir: [false, false, true, true , false],
-      tableAction: ['action','phone_number'],
+      loadingTransaction: true,
+      tableHeadItems: ['شماره پیگیری', 'نوع', 'مقدار', 'ارز', 'تاریخ', 'توضیحات' , 'وضعیت'],
+      tableKeyItems: ['transaction_token', 'transaction_fa_type', 'amount', 'symbol', 'shamsi_date','description' , 'status'],
+      indexFarsiItemTable: [false, false, true, false, true, false, false],
+      haveCommaFarsiItemTable: [false, false, false, false, false, false, false, false],
+      ltrDir: [false, false, false, false, true, false, false],
     }
   },
   async mounted() {
     await this.$store.dispatch('transaction/getUserFiatTransaction')
+    this.loadingTransaction = false
   },
   computed: {
     userFiatTransaction() {
       return this.$store.state.transaction.userFiatTransaction
     }
   },
-  methods: {
-  }
 }
 </script>
 

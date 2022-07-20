@@ -1,11 +1,11 @@
 <template>
   <div class="table-body">
     <div class="table-head px-2 font-weight-bold d-flex align-items-center justify-content-between py-3">
-        لیست تراکنشات :
-        <span class="py-1 px-2">
-            ۵
-            تراکنش
-        </span>
+      لیست تراکنشات :
+      <span class="py-1 px-2">
+        ۵
+        تراکنش
+      </span>
     </div>
     <div class="table-main">
       <table class="table custom-table table-hover">
@@ -21,22 +21,26 @@
         </thead>
         <tbody v-if="!loadingTable">
           <tr v-if="tableData.length !== 0" v-for="(ticket , i) in tableData"
-            @click="pushRoute(ticket[tableAction[0]] , ticket[tableAction[1]])" :key="i">
+            @click="pushRoute(actions === 'route' ? ticket[tableAction[0]] : null, actions === 'route' ? ticket[tableAction[1]] : null, action === 'modal' ? ticket : null)"
+            :key="i">
             <td>
               {{ $toFarsiNum(i+1) }}
             </td>
             <td v-for="(items , i) in tableKeyItems" :key="i" :class="items === 'status' ? 'status text-center' : ''">
               <span :class="tableKeyItems[i] === 'description' ? 'description-td' : ''"
                 :dir="ltrDir[i] === true ? 'ltr' : 'rtl'">
-                  {{ indexFarsiItemTable[i] === true ?
-                      $toFarsiNum(ticket[items] , haveCommaFarsiItemTable[i]) : 
-                      ticket[items] 
-                  }}
-                <span v-if="haveRoutePush && items === tableKeyItems[0]" class="show-order">
+                {{ indexFarsiItemTable[i] === true ?
+                $toFarsiNum(ticket[items] , haveCommaFarsiItemTable[i]) :
+                ticket[items]
+                }}
+                <span v-if="action && items === tableKeyItems[0]" class="show-order">
                   (مشاهده)
                 </span>
               </span>
             </td>
+            <b-modal id="modal-center" :hide-footer="true" centered title="">
+              <slot></slot>
+            </b-modal>
           </tr>
         </tbody>
 
@@ -60,14 +64,17 @@
 export default {
   name: 'custom-tabel',
   components: {},
-  props: ['loadingTable' ,'tableData' , 'tableHeadItems' , 'haveRoutePush' , 'tableKeyItems' , 'indexFarsiItemTable' , 'haveCommaFarsiItemTable' , 'ltrDir' , 'tableAction'],
+  props: ['loadingTable', 'tableData', 'tableHeadItems', 'tableKeyItems', 'indexFarsiItemTable', 'haveCommaFarsiItemTable', 'ltrDir', 'tableAction', 'action'],
   data () {
     return {}
   },
   methods: {
-    pushRoute(action, slug) {
-      if(this.haveRoutePush)
+    pushRoute(action, slug ,data) {
+      if(this.action === 'route')
         this.$router.push(action + slug)
+      else if (this.action === 'modal') {
+        this.$bvModal.show('modal-center')
+      }
     }
   }
 }
@@ -105,6 +112,7 @@ export default {
         }
         td{
             cursor: pointer;
+            // max-width: 200px;
             font-weight: 500;
             font-size: 13px;
             color: $black-600;
