@@ -3,7 +3,7 @@ export const state = () => ({
 })
 export const mutations = {
     setUserWallet(state, payload) {
-        state.userWallet = payload.data
+        state.userWallet = payload.data ? payload.data : []
     },
 }
 export const actions = {

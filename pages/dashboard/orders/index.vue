@@ -1,17 +1,15 @@
 <template>
   <section class="container-fluid">
-    <customTable
-      class="mt-3"
-      :loadingTable="loadingUsersList"
-      :tableData="data" 
-      :tableHeadItems="tableHeadItems" 
-      :tableKeyItems="tableKeyItems" 
-      :haveRoutePush="true" 
-      :indexFarsiItemTable="indexFarsiItemTable" 
+    <customTable  class="mt-2"
+      :loadingTable="loadingOrders" 
+      tableHeadTitle="لیست سفارشات"
+      tableHeadCounter="سفارش"
+      :tableData="userOrders" 
+      :tableHeadItems="tableHeadItems"
+      :tableKeyItems="tableKeyItems"
+      :indexFarsiItemTable="indexFarsiItemTable"
       :haveCommaFarsiItemTable="haveCommaFarsiItemTable" 
-      :ltrDir="ltrDir" 
-      :tableAction="tableAction"
-    />
+      :ltrDir="ltrDir" ></customTable>
   </section>
 </template>
 
@@ -23,25 +21,24 @@ export default {
   props: [],
   data() {
     return {
-      data : [
-        {name: "سیبیسب", admin: "سیبسی", action: "/admin-panel/users/", status: "سیبسیب", national_id: "سیبسیبسیب", phone_number: "سیبسبسی"},
-        {name: "سیبیسب", admin: "سیبسی", action: "/admin-panel/users/", status: "سیبسیب", national_id: "سیبسیبسیب", phone_number: "سیبسبسی"},
-        {name: "سیبیسب", admin: "سیبسی", action: "/admin-panel/users/", status: "سیبسیب", national_id: "سیبسیبسیب", phone_number: "سیبسبسی"},
-        {name: "سیبیسب", admin: "سیبسی", action: "/admin-panel/users/", status: "سیبسیب", national_id: "سیبسیبسیب", phone_number: "سیبسبسی"},
-        {name: "سیبیسب", admin: "سیبسی", action: "/admin-panel/users/", status: "سیبسیب", national_id: "سیبسیبسیب", phone_number: "سیبسبسی"},
-      ],
-      tableHeadItems: ['یسبسی', 'سیبسیب', 'سیبیس', 'یسبسیب' , 'سیبسیب'],
-      tableKeyItems: ['name'  , 'admin' , 'national_id' , 'phone_number' , 'status'],
-      indexFarsiItemTable: [false, false, true, true,false],
-      haveCommaFarsiItemTable: [false, false, false, false, false],
-      ltrDir: [false, false, true, true , false],
-      tableAction: ['action','phone_number'],
+      loadingOrders: true,
+      tableHeadItems: ['شماره سفارش', 'ارز', 'سیمبل', 'مقدار', 'قیمت' , 'تاریخ', 'توضیحات' , 'وضعیت'],
+      tableKeyItems: ['order_number', 'currencies_fa_name', 'symbol', 'quantity', 'price', 'shamsi_date', 'description' , 'status'],
+      indexFarsiItemTable: [false, false, false, true, true, true, false, false],
+      haveCommaFarsiItemTable: [false, false, false, false, true, false, false, false, false],
+      ltrDir: [false, false, false, false, false, true, false, false],
     }
   },
-  mounted() {
+  async mounted() {
+    if (this.userOrders.length === 0)
+      await this.$store.dispatch('order/getUserOrders')
+    this.loadingOrders = false
   },
-  methods: {
-  }
+  computed: {
+    userOrders() {
+      return this.$store.state.order.userOrders
+    },
+  },
 }
 </script>
 

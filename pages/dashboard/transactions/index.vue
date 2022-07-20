@@ -1,14 +1,16 @@
 <template>
   <section class="container-fluid">
-    <tabbar :tabItems="['1' , '1']"></tabbar>
-    <customTable  class="mt-3"
+    <tabbar @sendActiveTab="sendActiveTab($event)" class="mt-3" theme="primary" :tabItems="['تراکنشات ریالی' , 'تراکنشات ارزی']"></tabbar>
+    <customTable  class="mt-2"
       :loadingTable="loadingTransaction" 
-      :tableData="userFiatTransaction" 
+      tableHeadTitle="لیست تراکنشات"
+      tableHeadCounter="تراکنش"
+      :tableData="activeTab === 0 ? userFiatTransaction : userCurrencyTransaction" 
       :tableHeadItems="tableHeadItems"
       :tableKeyItems="tableKeyItems"
       :indexFarsiItemTable="indexFarsiItemTable"
       :haveCommaFarsiItemTable="haveCommaFarsiItemTable" 
-      :ltrDir="ltrDir" :tableAction="tableAction" ></customTable>
+      :ltrDir="ltrDir" ></customTable>
   </section>
 </template>
 
@@ -21,6 +23,7 @@ export default {
   props: [],
   data() {
     return {
+      activeTab: 0,
       loadingTransaction: true,
       tableHeadItems: ['شماره پیگیری', 'نوع', 'مقدار', 'ارز', 'تاریخ', 'توضیحات' , 'وضعیت'],
       tableKeyItems: ['transaction_token', 'transaction_fa_type', 'amount', 'symbol', 'shamsi_date','description' , 'status'],
@@ -30,14 +33,29 @@ export default {
     }
   },
   async mounted() {
-    await this.$store.dispatch('transaction/getUserFiatTransaction')
+    if(this.activeTab === 0 && this.userFiatTransaction.length === 0)
+      await this.$store.dispatch('transaction/getUserFiatTransaction')
     this.loadingTransaction = false
   },
   computed: {
     userFiatTransaction() {
       return this.$store.state.transaction.userFiatTransaction
+    },
+    userCurrencyTransaction() {
+      return this.$store.state.transaction.userCurrencyTransaction
     }
   },
+  methods: {
+    async sendActiveTab(i) {
+      this.activeTab = i
+      this.loadingTransaction = true
+      if (this.activeTab === 0 && this.userFiatTransaction.length === 0)
+        await this.$store.dispatch('transaction/getUserFiatTransaction')
+      else if (this.activeTab === 1 && this.userCurrencyTransaction.length === 0)
+        await this.$store.dispatch('transaction/getUserCurrencyTransaction')
+      this.loadingTransaction = false
+    }
+  }
 }
 </script>
 

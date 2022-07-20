@@ -1,10 +1,10 @@
 <template>
   <div class="table-body">
     <div class="table-head px-2 font-weight-bold d-flex align-items-center justify-content-between py-3">
-      لیست تراکنشات :
+      {{ tableHeadTitle }} :
       <span class="py-1 px-2">
-        ۵
-        تراکنش
+        {{ $toFarsiNum(tableData.length , true) }}
+        {{ tableHeadCounter }}
       </span>
     </div>
     <div class="table-main">
@@ -20,8 +20,8 @@
           </tr>
         </thead>
         <tbody v-if="!loadingTable">
-          <tr v-if="tableData.length !== 0" v-for="(ticket , i) in tableData"
-            @click="pushRoute(actions === 'route' ? ticket[tableAction[0]] : null, actions === 'route' ? ticket[tableAction[1]] : null, action === 'modal' ? ticket : null)"
+          <tr v-if="tableData.length !== 0" v-for="(data , i) in tableData"
+            @click="pushRoute(action === 'route' ? data[tableAction[0]] : null, action === 'route' ? data[tableAction[1]] : null, action === 'modal' ? data : null)"
             :key="i">
             <td>
               {{ $toFarsiNum(i+1) }}
@@ -29,9 +29,10 @@
             <td v-for="(items , i) in tableKeyItems" :key="i" :class="items === 'status' ? 'status text-center' : ''">
               <span :class="tableKeyItems[i] === 'description' ? 'description-td' : ''"
                 :dir="ltrDir[i] === true ? 'ltr' : 'rtl'">
-                {{ indexFarsiItemTable[i] === true ?
-                $toFarsiNum(ticket[items] , haveCommaFarsiItemTable[i]) :
-                ticket[items]
+                {{
+                indexFarsiItemTable[i] === true ?
+                $toFarsiNum(data[items] , haveCommaFarsiItemTable[i]) :
+                data[items]
                 }}
                 <span v-if="action && items === tableKeyItems[0]" class="show-order">
                   (مشاهده)
@@ -42,6 +43,12 @@
               <slot></slot>
             </b-modal>
           </tr>
+          <div v-if="tableData.length === 0"
+            class="d-flex font-weight-bold align-items-center justify-content-center no-data mt-3">
+            <b-icon icon="folder-x" class="ml-2"></b-icon>
+            اطلاعاتی برای نمایش وجود ندارد.
+          </div>
+          <div v-if="tableData.length === 0" class="cover-no-data text-center mt-3"></div>
         </tbody>
 
         <tbody v-if="loadingTable">
@@ -64,7 +71,7 @@
 export default {
   name: 'custom-tabel',
   components: {},
-  props: ['loadingTable', 'tableData', 'tableHeadItems', 'tableKeyItems', 'indexFarsiItemTable', 'haveCommaFarsiItemTable', 'ltrDir', 'tableAction', 'action'],
+  props: ['loadingTable', 'tableHeadTitle', 'tableHeadCounter', 'tableData', 'tableHeadItems', 'tableKeyItems', 'indexFarsiItemTable', 'haveCommaFarsiItemTable', 'ltrDir', 'tableAction', 'action'],
   data () {
     return {}
   },
@@ -112,7 +119,6 @@ export default {
         }
         td{
             cursor: pointer;
-            // max-width: 200px;
             font-weight: 500;
             font-size: 13px;
             color: $black-600;
@@ -130,6 +136,24 @@ export default {
         .description-td{
             max-width: 200px !important;
         }
+    }
+    tbody{
+      position: relative;
+      .no-data{
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 70px;
+        font-size: 13px;
+        color: $black-450;
+        svg{
+          font-size: 35px;
+          color: $black-400;
+        }
+      }
+      .cover-no-data{
+        height: 70px;
+      }
     }
 }
 </style>

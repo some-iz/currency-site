@@ -1,5 +1,5 @@
 <template>
-    <div class="w-100 d-flex tab-bar font-weight-bold mb-2">
+    <div :class="`${theme} w-100 d-flex tab-bar font-weight-bold mb-2`">
         <div @click="setActiveTab(i)" v-for="(tab , i) in tabItems" :key="i" :class="[activeTab === i ? 'active' : '' , 'w-100 d-flex justify-content-center align-items-center']">
             {{tab}}
         </div>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-    props: ['tabItems'],
+    props: ['tabItems', 'theme'],
     data() {
         return {
             activeTab: 0,
@@ -24,6 +24,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .tab-bar{
   height: 60px;
   background: $black-50;
@@ -40,6 +41,12 @@ export default {
   .active{
     background: $black-700;
     color: $white-full;
+  }
+}
+.primary{
+  .active{
+    background: $primary-color;
+    color: $black-800;
   }
 }
 </style>
