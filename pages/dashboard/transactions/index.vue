@@ -1,16 +1,11 @@
 <template>
   <section class="container-fluid">
-    <tabbar @sendActiveTab="sendActiveTab($event)" class="mt-3" theme="primary" :tabItems="['تراکنشات ریالی' , 'تراکنشات ارزی']"></tabbar>
-    <customTable  class="mt-2"
-      :loadingTable="loadingTransaction" 
-      tableHeadTitle="لیست تراکنشات"
-      tableHeadCounter="تراکنش"
-      :tableData="activeTab === 0 ? userFiatTransaction : userCurrencyTransaction" 
-      :tableHeadItems="tableHeadItems"
-      :tableKeyItems="tableKeyItems"
-      :indexFarsiItemTable="indexFarsiItemTable"
-      :haveCommaFarsiItemTable="haveCommaFarsiItemTable" 
-      :ltrDir="ltrDir" ></customTable>
+    <tabbar @sendActiveTab="sendActiveTab($event)" class="mt-3" theme="primary"
+      :tabItems="['تراکنشات ریالی' , 'تراکنشات ارزی']"></tabbar>
+    <customTable class="mt-2" :loadingTable="loadingTransaction" tableHeadTitle="لیست تراکنشات"
+      tableHeadCounter="تراکنش" :tableData="activeTab === 0 ? userFiatTransaction : userCurrencyTransaction"
+      :tableHeadItems="tableHeadItems" :tableKeyItems="tableKeyItems" :indexFarsiItemTable="indexFarsiItemTable"
+      :haveCommaFarsiItemTable="haveCommaFarsiItemTable" :ltrDir="ltrDir"></customTable>
   </section>
 </template>
 
@@ -43,7 +38,7 @@ export default {
     },
     userCurrencyTransaction() {
       return this.$store.state.transaction.userCurrencyTransaction
-    }
+    },
   },
   methods: {
     async sendActiveTab(i) {

@@ -23,6 +23,12 @@ export const mutations = {
     setUserInfo(state, payload) {
         state.userInfo = payload.data
     },
+    updateUserInfo(state, payload) {
+        state.userInfo.info[0][payload.id]= payload.val
+    },
+    updateUserAddress(state, payload) {
+        state.userInfo.address[0][payload.id]= payload.val
+    },
 }
 export const actions = {
     async nuxtServerInit({ dispatch }) {
@@ -34,7 +40,7 @@ export const actions = {
     },
 }
 export const getters = {
-    // getLoginHistoryByPage: (state) => (start , end) => {
-    //     return state.userInfo.login_history.filter((el , index) => index >= start && index <= end)
-    // },
+    // getPersonalUserInfo(state) {
+    //     return state
+    // }
 }
