@@ -35,7 +35,15 @@ export const actions = {
         await dispatch('pageData/getDashboardPageData')
     },
     async getUserInfo() {
-        const res = await this.$apiRun({auth: true , havePublicToken: true , method: 'user_info_get' , vars: `` , mut: 'setUserInfo'})
+        const res = await this.$apiRun({auth: true , method: 'user_info_get' , vars: `` , mut: 'setUserInfo'})
+        return res
+    },
+    async setUserInfo({ state }) {
+        const res = await this.$apiRun({auth: true , method: 'user_info_set' , vars: `?name=${state.userInfo.info[0].name}&lastname=${state.userInfo.info[0].lastname}&birthday=${state.userInfo.info[0].birthday}&father_name=${state.userInfo.info[0].father_name}&national_id=${state.userInfo.info[0].national_id}` , mut: ''})
+        return res
+    },
+    async setAddressInfo({ state }) {
+        const res = await this.$apiRun({auth: true , method: 'address_set' , vars: `?province=${state.userInfo.address[0].province_id}&city=${state.userInfo.address[0].city_id}&address=${state.userInfo.address[0].address}&postal=${state.userInfo.address[0].postal_code}&phone_number=${state.userInfo.address[0].phone_number}` , mut: ''})
         return res
     },
 }

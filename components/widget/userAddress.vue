@@ -4,14 +4,25 @@
             <div class="d-flex mb-3">
                 <label class="w-100 font-weight-bold ml-2">
                     استان :
-                    <select v-model="provinceId" class="input-form w-100 mt-1 px-1" name="" id="">
-                        <option value="">شهر یک</option>
+                    <select v-model="provinceId" @change="getCityList(provinceId)" :disabled="loading"
+                        class="input-form w-100 mt-1 px-1" name="" id="">
+                        <option selected value="0">
+                            انتخاب استان محل سکونت
+                        </option>
+                        <option v-for="(province , i) in provinceList" :key="i" :value="province.id">
+                            {{ province.province }}
+                        </option>
                     </select>
                 </label>
                 <label class="w-100 font-weight-bold">
                     شهر :
-                    <select v-model="cityId" class="input-form w-100 mt-1 px-1" name="" id="">
-                        <option value="">شهر یک</option>
+                    <select v-model="cityId" class="input-form w-100 mt-1 px-1" :disabled="loading" name="" id="">
+                        <option selected value="0">
+                            انتخاب شهر محل سکونت
+                        </option>
+                        <option v-for="(city , i) in cityList" :key="i" :value="city.id">
+                            {{ city.city }}
+                        </option>
                     </select>
                 </label>
             </div>
@@ -24,10 +35,10 @@
                 <textarea v-model="address" class="input-form w-100 mt-1" rows="3"></textarea>
             </label>
             <label class="w-100 mb-3 font-weight-bold">
-                شماره تلفن ثابت :
+                تلفن ثابت : (با پیش شماره)
                 <input v-model="phoneNumber" class="input-form w-100 mt-1" type="text" />
             </label>
-            <Btn class="mt-4 py-2 rounded font-weight-bold" width="full" size="small">ثبت آدرس</Btn>
+            <Btn @click="setAddressInfo()" :loading="loadingBtn" class="mt-4 py-2 rounded font-weight-bold" width="full" size="small">ثبت آدرس</Btn>
         </div>
         <user-info-img width="col-md-5" :status="1" title="در انتظار ثبت آدرس..." imgSrc="/img/auth/location.png"
             imgAlt="address"></user-info-img>
@@ -46,6 +57,8 @@ export default {
     props: [],
     data() {
         return {
+            loading: true,
+            loadingBtn: false
         }
     },
     computed: {
@@ -89,6 +102,50 @@ export default {
                 this.$store.commit('updateUserAddress', { val: value, id: 'phone_number' })
             }
         },
+        provinceList() {
+            return this.$store.state.areas.provinceList
+        },
+        cityList() {
+            return this.$store.state.areas.cityList
+        }
+    },
+    async mounted() {
+        this.loading = true
+        if (this.provinceList.length === 0)
+            await this.$store.dispatch('areas/getProvinceList');
+        await this.getCityList(this.provinceId)
+        this.loading = false
+
+    },
+    methods: {
+        async getCityList(id) {
+            if (id != 0) {
+                this.loading = true
+                this.cityId = 0
+                await this.$store.dispatch('areas/getCityList', id)
+                this.loading = false
+            }
+        },
+        async setAddressInfo() {
+            this.loadingBtn = true
+            let res = await this.$store.dispatch('setAddressInfo');
+            if (JSON.parse(res.ok) === true) {
+                this.$fire({
+                    title: "عملیات موفق",
+                    text: "اطلاعات آدرس شما با موفقیت ثبت گردید...",
+                    type: "success",
+                    timer: 10000
+                });
+            } else {
+                this.$fire({
+                    title: "عملیات ناموفق",
+                    text: res.error[0].description_details,
+                    type: "error",
+                    timer: 10000
+                });
+            }
+            this.loadingBtn = false
+        }
     }
 }
 </script>

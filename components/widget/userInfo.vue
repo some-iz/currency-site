@@ -2,7 +2,6 @@
     <div class="personal-info row mt-4 pt-2 pt-md-0 mt-md-5 px-0 px-md-2 px-lg-4">
         <div class="col-md-7">
             <div class="d-flex mb-3">
-                {{ ttt }}
                 <label class="w-100 font-weight-bold ml-2">
                     نام :
                     <input v-model="name" class="input-form w-100 mt-1" type="text" />
@@ -29,7 +28,7 @@
                         color="gray" />
                 </client-only>
             </div>
-            <Btn class="mt-4 py-2 rounded font-weight-bold" width="full" size="small">ثبت مشخصات</Btn>
+            <Btn :loading="loading" @click="setUserInfo()" class="mt-4 py-2 rounded font-weight-bold" width="full" size="small">ثبت مشخصات</Btn>
         </div>
         <user-info-img width="col-md-5" :status="1" title="در انتظار ثبت اطلاعات..." imgSrc="/img/auth/preview.png"
             imgAlt="info"></user-info-img>
@@ -49,7 +48,7 @@ export default {
     props: [],
     data() {
         return {
-            date: null
+            loading: false
         }
     },
     computed: {
@@ -93,6 +92,28 @@ export default {
                 this.$store.commit('updateUserInfo', { val: value, id: 'birthday' })
             }
         },
+    },
+    methods: {
+        async setUserInfo() {
+            this.loading= true
+            let res = await this.$store.dispatch('setUserInfo');
+            if (JSON.parse(res.ok) === true) {
+                this.$fire({
+                    title: "عملیات موفق",
+                    text: "اطلاعات فردی شما با موفقیت ثبت گردید...",
+                    type: "success",
+                    timer: 10000
+                });
+            } else {
+                this.$fire({
+                    title: "عملیات ناموفق",
+                    text: res.error[0].description_details,
+                    type: "error",
+                    timer: 10000
+                });
+            }
+            this.loading = false
+        }
     }
 }
 </script>

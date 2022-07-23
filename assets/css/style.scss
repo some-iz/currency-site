@@ -44,7 +44,7 @@ input , select{
   text-indent: 0;
 }
 .input-form{
-  background: $black-50;
+  background: $input-color;
   padding: 6px 7px;
   border: 2px solid $black-20;
   font-size: 13px;
@@ -59,7 +59,12 @@ input , select{
 a, a:hover{
   color: $black-full;
 }
-
+select{
+  cursor: pointer !important;
+}
+select:disabled{
+  cursor: wait !important;
+}
 .code-input input{
   background: $black-50;
 }

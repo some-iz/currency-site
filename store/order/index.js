@@ -3,7 +3,6 @@ export const state = () => ({
 })
 export const mutations = {
     setUserOrders(state, payload) {
-        console.warn('d')
         state.userOrders = payload.data ? payload.data : []
     },
 }

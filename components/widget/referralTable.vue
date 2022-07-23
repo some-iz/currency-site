@@ -29,12 +29,8 @@
                 {{ ref.referral_code }}
             </span>
             <span dir="ltr">
-                {{ baseUrl }}/panel?refcode={{ ref.referral_code }}
-                <samp v-clipboard:copy="`${baseUrl}/panel?refcode=${ref.referral_code}`" @click="copyText(3)"
-                    id="table-link">
-                    <!--                    <i class="fa fa-check" aria-hidden="true"></i>-->
-                    <i class="fa fa-clone" aria-hidden="true"></i>
-                </samp>
+                {{ baseUrl }}?refcode={{ ref.referral_code }}
+                <copy-text :id="i" :text="`${ baseUrl }?refcode=${ ref.referral_code }`"></copy-text>
             </span>
             <span>
                 <span>
@@ -65,22 +61,40 @@
 </template>
 
 <script>
+import CopyText from './copyText.vue'
 export default {
+    components: { CopyText },
     data() {
         return {
             loading: false,
-            percentage: 30,
-            idTextCopy: false,
-            linkTextCopy: false,
-            userReferral: [],
-            baseUrl: '',
-            allStatistics: {
-                number: 0,
-                trade: 0,
-                tradePercentage: 0
-            },
+            baseUrl: ''
         }
     },
+    async mounted() {
+        await this.getUserReferral()
+    },
+    computed: {
+        userReferral() {
+            return this.$store.state.referral.userReferral
+        },
+    },
+    methods: {
+        async getUserReferral() {
+            this.loading = true;
+            let res = await this.$store.dispatch('referral/getUserReferral')
+            if (JSON.parse(res.ok) === true) {
+                this.baseUrl = window.location.origin
+            } else {
+                this.$fire({
+                    title: "خطا در بارگذاری",
+                    text: "متاسفانه خطایی در هنگام بارگذاری اطلاعات رخ داده...",
+                    type: "error",
+                    timer: 10000
+                });
+            }
+            this.loading = false;
+        },
+    }
 }
 </script>
 
@@ -120,6 +134,8 @@ export default {
         text-align: right;
         grid-template-columns: 1fr 3fr 1fr 1fr 1fr 2fr;
         margin: 25px 0;
+        font-size: 13px;
+        font-weight: 500;
         >span {
             span {
                 display: none;
@@ -137,21 +153,6 @@ export default {
         >span:not(span:first-child) {
             text-align: center;
             overflow-wrap: anywhere;
-            samp {
-                display: inline-block;
-                font-size: 15px;
-                overflow-wrap: anywhere;
-                cursor: pointer;
-                i {
-                    background: $primary_color;
-                    padding: 8px;
-                    border-radius: 100%;
-                    color: rgba(0, 0, 0, 0.3);
-                }
-                .fa-clone {
-                    transform: rotateY(180deg);
-                }
-            }
         }
     }
     @media screen and (max-width: 800px) {

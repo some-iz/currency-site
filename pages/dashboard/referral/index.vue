@@ -44,28 +44,7 @@ export default {
     // await this.getUserReferral()
   },
   methods: {
-    async getUserReferral() {
-      this.loading = true;
-      let res = await this.$apiRun({ auth: false, method: 'user_referral_code_list', vars: '' , mut: '' })
-      this.loading = false;
-      if (JSON.parse(res.ok) === true) {
-        this.userReferral = res.data.sort((a, b) => a.subset_profit - b.subset_profit);
-        res.data.map((el) => {
-          this.allStatistics.number += el.referral_count
-          this.allStatistics.trade += el.transaction_referral_count
-          this.allStatistics.tradePercentage += el.profit_referral_code
-        })
-        this.baseUrl = window.location.origin
-      } else {
-        this.$fire({
-          title: "خطا در بارگذاری",
-          text: "متاسفانه خطایی در هنگام بارگذاری اطلاعات رخ داده...",
-          type: "error",
-          timer: 10000
-        });
-        return false
-      }
-    },
+    
     copyText(id) {
       if (id === 1)
         this.idTextCopy = true

@@ -5,27 +5,20 @@
                 کد دعوت شما
             </h4>
             <p>دوستان خود را با لینک زیر به ربیت دعوت کنید:</p>
-            <div>
+            <div class="main-ref">
                 <div>
                     <span>کد دعوت شما :</span>
-                    <span dir="ltr">
-                        11111
-                        <!-- {{ userReferral[0].referral_code }} -->
-                        <samp @click="copySomething('12345')">
-                            <b-icon-clipboard-plus> </b-icon-clipboard-plus>
-                        </samp>
+                    <span v-if="userReferral.length !== 0" dir="ltr">
+                        {{ userReferral[0].referral_code }}
+                        <copy-text :id="1" :text="userReferral[0].referral_code"></copy-text>
                     </span>
                 </div>
 
                 <div>
                     <span>لینک دعوت شما :</span>
-                    <span dir="ltr">
-                        {{ path }}
-                        <!-- {{$router.currentRoute}} -->
-                        <!-- {{ baseUrl }}/panel?refcode={{ userReferral[0].referral_code }} -->
-                        <samp v-clipboard:copy="111" @click="copyText(1)">
-                            <b-icon-clipboard-plus> </b-icon-clipboard-plus>
-                        </samp>
+                    <span v-if="userReferral.length !== 0" dir="ltr">
+                        {{ baseUrl }}?refcode={{ userReferral[0].referral_code }}
+                        <copy-text :id="1" :text="`${baseUrl}?refcode=${userReferral[0].referral_code}`"></copy-text>
                     </span>
                 </div>
             </div>
@@ -38,22 +31,19 @@
                 <span>
                     تعداد کل دوستان شما
                     <strong class="pt-2">
-                        {{ $toFarsiNum(11,true) }}
-                        <!-- {{ allStatistics.number }} -->
+                        {{ $toFarsiNum(allStatistics.number,true) }}
                     </strong>
                 </span>
                 <span>
                     تعداد معاملات دوستان
                     <strong class="pt-2">
-                        {{ $toFarsiNum(11,true) }}
-                        <!-- {{ allStatistics.trade }} -->
+                        {{ $toFarsiNum(allStatistics.trade,true) }}
                     </strong>
                 </span>
                 <span>
                     مجموع کارمزد دریافتی
                     <strong class="pt-2">
-                        {{ $toFarsiNum(11236,true) }}
-                        <!-- {{ allStatistics.tradePercentage.toLocaleString() }} -->
+                        {{ $toFarsiNum(allStatistics.tradePercentage,true) }}
                         <TomanLogo></TomanLogo>
                     </strong>
                 </span>
@@ -63,57 +53,31 @@
 </template>
 
 <script>
+import CopyText from './copyText.vue';
 import TomanLogo from './tomanLogo.vue';
-
 export default {
+    components: { TomanLogo, CopyText },
     data() {
         return {
-            path: "",
-            idTextCopy: false,
-            linkTextCopy: false,
+            baseUrl: '',
+
         };
     },
+    computed: {
+        userReferral() {
+            return this.$store.state.referral.userReferral
+        },
+        allStatistics() {
+            return this.$store.state.referral.allStatistics
+        },
+    },
     mounted() {
-        this.path = `https://${window.location.host}`;
+        this.baseUrl = window.location.origin
     },
-    methods: {
-        async copySomething(text) {
-            try {
-                await this.$copyText(text);
-            }
-            catch (e) {
-                console.error(e);
-            }
-        },
-        copyText(id) {
-            if (id === 1)
-                this.idTextCopy = true;
-            else if (id === 2)
-                this.linkTextCopy = true;
-            else {
-                this.$fire({
-                    title: "کپی شد...",
-                    text: "لینک دعوت شما با موفقیت کپی شد...",
-                    type: "success",
-                    timer: 1300
-                });
-            }
-            setTimeout(() => {
-                this.linkTextCopy = false;
-                this.idTextCopy = false;
-            }, 2000);
-        },
-    },
-    components: { TomanLogo }
 }
 </script>
 
 <style lang="scss" scoped>
-
-
-
-
-
 .main-ref {
     text-align: right;
     cursor: default;
@@ -145,23 +109,9 @@ export default {
                     font-size: 14px;
                 }
                 span:last-child {
-                    font-size: 18px;
+                    font-size: 15px;
                     overflow-wrap: anywhere;
                     margin-top: 5px;
-                }
-                samp {
-                    display: inline-block;
-                    font-size: 17px;
-                    overflow-wrap: anywhere;
-                    cursor: pointer;
-                    background: $primary_color;
-                    padding: 8px;
-                    width: 35px;
-                    height: 35px;
-                    border-radius: 10px;
-                    svg {
-                        transform: translateY(-3px);
-                    }
                 }
             }
             div:first-child {

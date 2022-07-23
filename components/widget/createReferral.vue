@@ -27,7 +27,7 @@
                 %{{ $toFarsiNum((i - 1) * 5) }}
             </btn>
         </div>
-        <btn @click="generatorCode()" class="font-weight-bold mt-4" width="full" size="small">
+        <btn :loading="loading" @click="generatorCode()" class="font-weight-bold mt-4" width="full" size="small">
             ساخت کد دعوت
         </btn>
     </div>
@@ -46,7 +46,7 @@ export default {
     methods: {
         async generatorCode() {
             this.loading = true
-            let res = await this.$apiRun({ auth: true, method: 'user_referral_code_generate', vars: `?user_profit=${this.percentage}&subset_profit=${30 - this.percentage}`, mut: '' })
+            let res = await this.$store.dispatch('referral/generateReferral', this.percentage)
             if (JSON.parse(res.ok) === true) {
                 this.$fire({
                     title: "عملیات موفق",

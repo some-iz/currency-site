@@ -5,9 +5,13 @@
       <file-pond name="file" class="mt-1" ref="pond_img" :allowImagePreview="true" :instant-upload="false"
         label-idle="برای آپلود تصویر را اینجا انداخته یا انتخاب کنید" :allow-multiple="false"
         accepted-file-types="image/jpeg, image/png"
-        :server="{url:uploadUrl ,process:{onload:(response)=>imgUploadResponse(response)}}" v-bind:files="files" />
+        @processfilestart="setLoading(true)"
+        :server="{
+            url: uploadUrl ,
+            process:{onload:(response)=>imgUploadResponse(response)}
+        }" :files="files" />
     </label>
-    <Btn @click="uploadImg()" class="mt-1 py-2 rounded font-weight-bold" width="full" size="small">
+    <Btn :loading="loading" @click="uploadImg()" class="mt-1 py-2 rounded font-weight-bold" width="full" size="small">
       {{btnTitle}}
     </Btn>
   </div>
@@ -38,6 +42,9 @@ export default {
             default: 'انتخاب تصویر',
             type: String
         },
+        method: {
+            type: String
+        }
     },
     components: {
         FilePond,
@@ -45,41 +52,59 @@ export default {
     },
     data() {
         return {
-            files: []
+            files: [],
+            loading: false
         }
     },
     computed: {
         uploadUrl() {
-            return `https://joorweb.ir/${this.$store.state.userToken}/upload?store_token=${this.$store.state.storePublicToken}`
+            return `https://api.faraex.ir/${this.$store.state.userToken}/upload`
         },
     },
     methods:{
         uploadImg(){
-            if(document.querySelectorAll('.filepond--action-process-item')[0])
+            if (document.querySelectorAll('.filepond--action-process-item')[0]) {
+                this.loading = true
                 document.querySelectorAll('.filepond--action-process-item')[0].click()
-        }
-    //     async imgUploadResponse(data) {
-    //   const result = JSON.parse(data);
-    //   if (result["ok"] === "true") {
-    //     this.$store.commit('admin/files/addNewFileToList',result.data[0])
-    //     this.$fire({
-    //       title: "عملیات موفق",
-    //       text: "فایل/فایلهای شما با موفقیت آپلود گردید...",
-    //       type: "success",
-    //       timer: 10000
-    //     })
-    //     this.$refs.pond_img.removeFile();
-    //   }
-    //   else{
-    //     this.$refs.pond_img.removeFile();
-    //     this.$fire({
-    //       title: "فایل آپلود نشد!",
-    //       text: result["msg"],
-    //       type: "error",
-    //       timer: 10000
-    //     })
-    //   }
-    // },
+            }
+        },
+        setLoading(status) {
+            this.loading = status
+        },
+        async imgUploadResponse(data) {
+            const result = JSON.parse(data);
+            if (result["ok"] === "true") {
+                let res = await this.$store.dispatch('upload/mainUploader', { method: this.method, imgToken: result['data'][0]["token"] })
+                if (res['ok'] === 'true') {
+                    this.$fire({
+                        title: "موفق",
+                        text: "تصویر شما با موفقیت آپلود گردید.",
+                        type: "success",
+                        timer: 10000
+                    })
+                }
+                else {
+                    this.$fire({
+                        title: "فایل آپلود نشد.",
+                        text: "مشکلی در آپلود فایل بوجود آمده است!",
+                        type: "warning",
+                        timer: 10000
+                    })
+                }
+                this.$refs.pond_img.removeFile();
+            }
+            else {
+                this.$refs.pond_img.removeFile();
+                this.$fire({
+                    title: "فایل آپلود نشد!",
+                    text: result["msg"],
+                    type: "warning",
+                    timer: 10000
+                })
+            }
+            this.loading = false
+
+        },
     }
 }
 </script>
