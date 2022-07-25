@@ -25,7 +25,12 @@
         {"title": "برداشت از حساب", "link": "/dashboard/transactions/withdraw" }
       ] 
     },
-    {"title": "حساب کاربری", "link": "/dashboard/authentication", "icon": "/img/dashboard/icon/person-rolodex.svg" , "submenu" : [] },
+    {"title": "حساب کاربری", "link": "/dashboard/authentication", "icon": "/img/dashboard/icon/person-rolodex.svg" , 
+      "submenu" : [
+        {"title": "حسابهای بانکی محبوب", "link": "/dashboard/authentication/bank-address" } ,
+        {"title": "کیف پولهای محبوب", "link": "/dashboard/authentication/wallet-address" }
+      ]
+    },
     {"title": "دعوت از دوستان", "link": "/dashboard/referral", "icon": "/img/dashboard/icon/people-fill.svg" , "submenu" : [] }
   ],
   "navbarTogglerTitle":[

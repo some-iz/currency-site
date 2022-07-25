@@ -50,6 +50,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .sidebar-dash {
   overflow-y: auto;
   background: $white-full;
@@ -113,6 +114,7 @@ export default {
           margin-top: 7px !important;
           background-color: $black-50;
           padding: 11px 6px;
+          font-size: 12.5px;
           opacity: .9;
         }
       }.active{

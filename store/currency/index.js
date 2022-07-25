@@ -1,7 +1,8 @@
 export const state = () => ({
     currencyList: [],
     currencyListWithoutToman: [],
-    tomanList: []
+    tomanList: [],
+    currencyNetWork: []
 })
 export const mutations = {
     setCurrencyList(state, payload) {
@@ -15,9 +16,16 @@ export const mutations = {
                 state.currencyListWithoutToman.push(el)
         })
     },
+    setCurrencyNetWork(state, payload) {
+        state.currencyNetWork = payload.data ? payload.data : []
+    },
 }
 export const actions = {
     async getCurrencyList({}) {
         await this.$apiRun({auth: false , method: 'currency_get_list' , vars: `` , mut: 'currency/setCurrencyList'})
+    },
+    async getCurrencyNetWork({} , currency) {
+        let res = await this.$apiRun({auth: true , method: 'currencies_network' , vars: `?coin=${currency}` , mut: 'currency/setCurrencyNetWork'})
+        return res
     },
 }

@@ -1,7 +1,7 @@
 <template>
     <label class="w-100 mb-3 font-weight-bold">
         کد تایید پیامکی :
-        <span class="d-flex align-items-center code-request">
+        <span class="d-flex align-items-center code-request mt-1">
             <TheMask v-model="codeInfo.code" @input="$emit('sendCode', codeInfo.code)" class="input-form w-100"
                 :mask="['######']" placeholder="کد تایید ۶ رقمی را وارد نمایید." />
             <Btn :loading="loading" :loadingCount="1" @click="getCode()" class="px-2 rounded font-weight-bold"
@@ -64,6 +64,8 @@ export default {
       white-space: nowrap;
       position: absolute;
       left: 0;
+      top: 0;
+      bottom: 0;
       padding: 6.85px 0;
       font-size: 12px;
       background: $success-color;

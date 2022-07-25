@@ -8,12 +8,10 @@
         {{counterTitle}}
       </span>
     </div>
-    <div v-for="i in 3" :key="i" class="dropdown mb-2">
+    <div v-for="(currency,i) in currencyList" :key="i" class="dropdown mb-2">
       <div @click="activeDropdown === i ? activeDropdown = 0 : activeDropdown = i"
         class="item-dropdown d-flex align-items-center justify-content-between py-2 px-2">
-        <currency-show faName="بیت کوین"
-          imgSrc="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/45_Bitcoin_logo_logos-512.png"
-          symbol="BTC">
+        <currency-show :faName="currency.fa_name" :imgSrc="currency.image" :symbol="currency.symbol">
         </currency-show>
         <div v-if="base === 'primary'" class="info">
           موجودی :
@@ -73,6 +71,9 @@ export default {
       default: false,
       type: Boolean
     },
+    currencyList: {
+      default: [],
+    }
   },
   components: { Btn,CurrencyShow },
   data() {

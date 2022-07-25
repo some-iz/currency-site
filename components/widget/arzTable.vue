@@ -75,8 +75,8 @@
         <td class="text-left action py-4">
           <nuxt-link :to="`/dashboard/trade?currency=${currency.symbol}`" class="buy p-1 px-2 rounded" v-if="currency.fa_name !== 'تومان'">خرید</nuxt-link>
           <nuxt-link :to="`/dashboard/trade?currency=${currency.symbol}`" class="sell p-1 px-2 rounded" v-if="currency.fa_name !== 'تومان'">فروش</nuxt-link>
-          <span class="buy p-1 px-2 rounded">واریز</span>
-          <span class="sell p-1 px-2 rounded">برداشت</span>
+          <nuxt-link :to="`/dashboard/transactions/deposit${currency.fa_name !== 'تومان' ? '?currency='+currency.symbol : ''}`" class="buy p-1 px-2 rounded">واریز</nuxt-link>
+          <nuxt-link :to="`/dashboard/transactions/withdraw${currency.fa_name !== 'تومان' ? '?currency='+currency.symbol : ''}`" class="sell p-1 px-2 rounded">برداشت</nuxt-link>
         </td>
       </tr>
       

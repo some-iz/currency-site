@@ -3,10 +3,10 @@
     <div class="trade-sec w-100">
       <div class="head-trade d-flex font-weight-bold">
         <span @click="changeTab(0)" :class="[viewId === 0 ? 'active' : '','py-3 px-4']">
-          خرید از ربیت
+          خرید از ارزفارم
         </span>
         <span @click="changeTab(1)" :class="[viewId === 1 ? 'active' : '','py-3 px-4']">
-          فروش به ربیت
+          فروش به ارزفارم
         </span>
       </div>
       <div class="row main-trade">
@@ -81,12 +81,15 @@
             </div>
           </div>
 
-          <btn class="mb-4 font-weight-bold">
+          <btn @click="showModal = true" class="mb-4 font-weight-bold">
             {{ viewId === 0 ? 'خرید' : 'فروش'}}
             {{ $toFarsiNum(topInput.value)}}
             {{ topInput.option.fa_name }}
           </btn>
-
+          {{ viewId }}
+          <custom-modal :title="`تایید نهایی فرآیند ${viewId === 0 ? 'خرید' : 'فروش'}`" :showModal="showModal" @closeModal="showModal = false">
+            <submit-order :currencyList="currencyList" :topInput="topInput" :bottomInput="bottomInput" :type="viewId"></submit-order>
+          </custom-modal>
         </div>
         <div class="col-md-4">
           <img class="img-fluid" src="/img/trade/trade.jpg" alt="">
@@ -101,14 +104,19 @@ import vSelect from 'vue-select'
 import "vue-select/src/scss/vue-select.scss";
 import Btn from './btn.vue';
 import CurrencyImg from './currencyImg.vue';
+import CustomModal from './customModal.vue';
+import SubmitOrder from './submitOrder.vue';
 export default {
   components: {
     vSelect,
     CurrencyImg,
-    Btn
+    Btn,
+    CustomModal,
+    SubmitOrder
   },
   data() {
     return {
+      showModal: false,
       interval: null,
       loading: true,
       viewId: 0,
