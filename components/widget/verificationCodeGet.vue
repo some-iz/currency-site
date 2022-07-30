@@ -2,8 +2,8 @@
     <label class="w-100 mb-3 font-weight-bold">
         کد تایید پیامکی :
         <span class="d-flex align-items-center code-request mt-1">
-            <TheMask v-model="codeInfo.code" @input="$emit('sendCode', codeInfo.code)" class="input-form w-100"
-                :mask="['######']" placeholder="کد تایید ۶ رقمی را وارد نمایید." />
+            <TheMask v-model="codeInfo.code" @input="$emit('sendCode', codeInfo)" class="input-form w-100"
+                :mask="['####']" placeholder="کد تایید ۴ رقمی را وارد نمایید." />
             <Btn :loading="loading" :loadingCount="1" @click="getCode()" class="px-2 rounded font-weight-bold"
                 size="small">ارسال کد</Btn>
         </span>
@@ -39,7 +39,7 @@ export default {
                     type: "success",
                     timer: 10000
                 })
-                this.codeInfo.code = res.data[0].token
+                this.codeInfo.token = res.data[0].token
             } else {
                 this.$fire({
                     title: res.error[0].fa_title,

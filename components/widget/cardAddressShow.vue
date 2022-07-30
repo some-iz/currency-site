@@ -9,7 +9,7 @@
                     </span>
                     {{ wallet.label }}
                 </span>
-                <btn class="pb-1 pt-0 px-1 rounded" size="small">
+                <btn :loading="loading" :loadingCount="1" @click="deleteAddress(wallet.id)" class="pb-1 pt-0 px-1 rounded" size="small">
                     <b-icon icon="trash"></b-icon>
                 </btn>
             </div>
@@ -45,7 +45,34 @@
 import btn from './btn.vue'
 export default {
   components: { btn },
-  props: ['userFavFiatWallet']
+    props: ['userFavFiatWallet'],
+    data() {
+        return {
+            loading: false
+        }
+    },
+    methods: {
+        async deleteAddress(id) {
+            this.loading = true
+            let res = await this.$store.dispatch('wallet/deleteUserFavFiatWallet', id)
+            if (JSON.parse(res.ok) === true) {
+                this.$fire({
+                    title: "عملیات موفق",
+                    text: "آدرس کیف پول شما با موفقیت حذف گردید...",
+                    type: "success",
+                    timer: 10000
+                });
+            } else {
+                this.$fire({
+                    title: "عملیات ناموفق",
+                    text: res.error[0].description_details,
+                    type: "error",
+                    timer: 10000
+                });
+            }
+            this.loading = false
+        }
+    }
 }
 </script>
 

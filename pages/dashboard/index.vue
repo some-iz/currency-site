@@ -1,7 +1,7 @@
 <template>
-  <main class="container-fluid py-3">
-    <alert-box base="success" icon="exclamation-circle-fill" class="mb-3"></alert-box>
-    <price-table width="w-100" class="mt-4"></price-table>
+  <main class="container-fluid py-3 px-1 px-sm-2 px-lg-3">
+    <!-- <alert-box base="success" icon="exclamation-circle-fill" class="mb-3"></alert-box> -->
+    <price-table width="w-100" class=""></price-table>
   </main>
 </template>
 
@@ -13,6 +13,11 @@ export default {
   components: {
     PriceTable,
     AlertBox,
+  },
+  computed: {
+    user() {
+      return this.$store.state.userInfo
+    }
   }
 }
 </script>

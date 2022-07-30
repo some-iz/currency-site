@@ -134,7 +134,7 @@
 
 <style lang="scss" scoped>
 form{
-    width: max-content;
+    width: 100%;
     min-height: 280px;
     justify-content: space-between;
     input{

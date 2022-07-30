@@ -1,22 +1,28 @@
 <template>
   <section class="navbar-dash d-flex px-2 justify-content-between ">
-  <b-icon-list @click="$emit('toggleSidebar' , !sidebar)" class="menu-icon"></b-icon-list>
-  <div class="left">
-    <b-icon-fullscreen v-if="!fullScreen" @click="changeFullscreen()" class="menu-icon"></b-icon-fullscreen>
-    <b-icon-fullscreen-exit v-else @click="changeFullscreen()" class="menu-icon"></b-icon-fullscreen-exit>
-    <b-icon-envelope v-b-toggle.sidebar-msg class="menu-icon"></b-icon-envelope>
-    <b-icon-bell v-b-toggle.sidebar-notification class="menu-icon"></b-icon-bell>
-    <b-icon-person v-b-toggle.sidebar-profile class="menu-icon ml-1"></b-icon-person>
-  </div>
-  <!-- <togglerSidebar v-for="(data , i) in navbarTogglerTitle" :key="i" :id="data.id" :title="data.title"></togglerSidebar> -->
-</section>
+    <b-icon-list @click="$emit('toggleSidebar' , !sidebar)" class="menu-icon"></b-icon-list>
+    <div class="left">
+      <b-icon-fullscreen v-if="!fullScreen" @click="changeFullscreen()" class="menu-icon"></b-icon-fullscreen>
+      <b-icon-fullscreen-exit v-else @click="changeFullscreen()" class="menu-icon"></b-icon-fullscreen-exit>
+      <b-icon-envelope v-b-toggle.sidebar-msg class="menu-icon"></b-icon-envelope>
+      <b-icon-bell v-b-toggle.sidebar-notification class="menu-icon"></b-icon-bell>
+      <b-icon-person v-b-toggle.sidebar-profile class="menu-icon ml-1"></b-icon-person>
+    </div>
+    
+    <toggler-sidebar title="حساب کاربری" id="profile">
+      <profile-summary></profile-summary>
+    </toggler-sidebar>
+  </section>
 </template>
 
 <script>
+import ProfileSummary from '../widget/profileSummary.vue';
+import TogglerSidebar from '../widget/togglerSidebar.vue';
 export default {
   name: 'navbar-dash',
   components: {
-    // togglerSidebar : () => import('~/components/widget/togglerSidebar'),
+    TogglerSidebar,
+    ProfileSummary
   },
   props: ['sidebar'],
   data() {
@@ -27,7 +33,7 @@ export default {
   computed: {
     navbarTogglerTitle() {
       return this.$store.state.pageData.dashboardPageData.navbarTogglerTitle
-    }
+    },
   },
   methods: {
     changeFullscreen() {

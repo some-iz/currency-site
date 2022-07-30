@@ -9,6 +9,9 @@ export const state = () => ({
 export const mutations = {
     setUserReferral(state, payload) {
         state.userReferral = payload.data.sort((a, b) => a.subset_profit - b.subset_profit);
+        state.allStatistics.number = 0
+        state.allStatistics.trade = 0
+        state.allStatistics.tradePercentage = 0
         payload.data.map((el) => {
             state.allStatistics.number += el.referral_count
             state.allStatistics.trade += el.transaction_referral_count

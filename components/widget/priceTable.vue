@@ -2,7 +2,8 @@
   <section class="price-table">
     <div :class="width">
       <div class="trade-sec w-100">
-        <arz-table :isWallet="isWallet" :loading="ssr === true ? false : loading" :currencyList="isWallet ? userWallet : currencyList"></arz-table>
+        <arz-table :isWallet="isWallet" :loading="ssr === true ? false : loading"
+          :currencyList="isWallet ? userWallet : currencyList"></arz-table>
       </div>
     </div>
   </section>
@@ -67,11 +68,20 @@ export default {
     border: 2px solid $black-70;
     overflow: hidden;
     box-shadow: 0 0 20px $black-70;
+    overflow-x: auto;
+    scrollbar-width: thin;
     .show-all{
       color: $black-200;
       cursor: pointer;
       font-size: 13px;
     }
+  }
+  .trade-sec::-webkit-scrollbar {
+    width: 9px;
+    background: $black-100;
+  }
+  .trade-sec::-webkit-scrollbar-thumb {
+    background: $black-200;
   }
 }
 </style>

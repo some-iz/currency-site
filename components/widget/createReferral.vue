@@ -27,7 +27,7 @@
                 %{{ $toFarsiNum((i - 1) * 5) }}
             </btn>
         </div>
-        <btn :loading="loading" @click="generatorCode()" class="font-weight-bold mt-4" width="full" size="small">
+        <btn :loading="loading" @click="generatorCode()" class="rounded font-weight-bold mt-4" width="full" size="small">
             ساخت کد دعوت
         </btn>
     </div>

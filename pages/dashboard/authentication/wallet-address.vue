@@ -3,24 +3,18 @@
     <div class="col-md-7">
       <wallet-address-add :currencyList="currencyList"></wallet-address-add>
     </div>
-    <!-- <drop-down-wallet :currencyList="currencyList" :haveSlot="true" title="کیف پول های ثبت شده" counterTitle="کیف پول"
-      base="secondary" class="">
-    </drop-down-wallet> -->
     <card-address-show :userFavFiatWallet="userFavFiatWallet" class="col-md-5"></card-address-show>
-
   </div>
 </template>
 
 <script>
 import Btn from '~/components/widget/btn.vue'
 import CardAddressShow from '~/components/widget/cardAddressShow.vue'
-import DropDownWallet from '~/components/widget/dropDownWallet.vue'
 import WalletAddressAdd from '~/components/widget/walletAddressAdd.vue'
 export default {
   layout: 'dashboard',
   components: {
     Btn,
-    DropDownWallet,
     WalletAddressAdd,
     CardAddressShow
   },

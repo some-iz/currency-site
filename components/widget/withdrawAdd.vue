@@ -4,8 +4,8 @@
             <label class="w-100 font-weight-bold">
                 حساب مقصد :
                 <select v-model="userBank" class="input-form w-100 mt-1 px-1" name="" id="">
-                    <option v-for="(bank, i) in bankAddress" :key="i" :value="bank.id">
-                        {{ bank.bank_name }} - (IR-{{ bank.shaba_number }})
+                    <option v-for="(bank, i) in bankAddress" :key="i" :value="bank.shaba_number">
+                        شماره شبا : IR-{{ bank.shaba_number }}
                     </option>
                 </select>
             </label>
@@ -39,7 +39,10 @@ export default {
     data() {
         return {
             loading: false,
-            codeInfo: {},
+            codeInfo: {
+                code: '',
+                token: ''
+            },
             userBank: '',
             amount: ''
         }
@@ -55,9 +58,27 @@ export default {
     },
     methods: {
         setCode(data) {
-            this.codeInfo.code = data
+            this.codeInfo = data
         },
         async submitFiatWithdraw() {
+            if (this.codeInfo.token === '') {
+                this.$fire({
+                    title: "درخواست ارسال کد!",
+                    text: 'لطفا درخواست ارسال کد ۴ رقمی را بدهید...',
+                    type: "warning",
+                    timer: 10000
+                });
+                return false
+            }
+            if (this.userBank === '' || this.amount.trim() === '' || this.codeInfo.code.trim() === '') {
+                this.$fire({
+                    title: "فیلد خالی!",
+                    text: 'لطفا تمامی فیلدهای ضروری را پر نمایید...',
+                    type: "warning",
+                    timer: 10000
+                });
+                return false
+            }
             this.loading = true
             let res = await this.$store.dispatch('transaction/addUserFiatWithdrawTransaction', { code: this.codeInfo.code, token: this.codeInfo.token, amount: this.amount, userBank: this.userBank })
             if (JSON.parse(res.ok) === true) {

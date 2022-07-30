@@ -4,10 +4,10 @@ export const state = () => ({
 })
 export const mutations = {
     setBankAddress(state, payload) {
-        state.bankAddress = payload.data
+        state.bankAddress = payload.data ? payload.data : []
     },
     setDefaultDepositCurrencyAddress(state, payload) {
-        state.defaultDepositCurrencyAddress = payload.data[0]
+        state.defaultDepositCurrencyAddress = payload.data ? payload.data[0] : []
     },
 }
 export const actions = {
@@ -22,4 +22,8 @@ export const actions = {
         let res = await this.$apiRun({auth: true , method: 'user_bank_account_add' , vars: `?card_number=${obj.card}&shaba_number=${obj.sheba}&bank_name=${obj.name}` , mut: 'address/setBankAddress'})
         return res
     },
+    async deleteBankAddress({ }, id) {
+        let res = await this.$apiRun({auth: true , method: 'user_bank_account_remove' , vars: `?id=${id}` , mut: ''})
+        return res
+    }
 }

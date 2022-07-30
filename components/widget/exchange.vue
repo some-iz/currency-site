@@ -80,15 +80,15 @@
               </v-select>
             </div>
           </div>
-
-          <btn @click="showModal = true" class="mb-4 font-weight-bold">
+          <btn @click="submitFinalOrder()" class="mb-4 font-weight-bold">
             {{ viewId === 0 ? 'خرید' : 'فروش'}}
             {{ $toFarsiNum(topInput.value)}}
             {{ topInput.option.fa_name }}
           </btn>
-          {{ viewId }}
-          <custom-modal :title="`تایید نهایی فرآیند ${viewId === 0 ? 'خرید' : 'فروش'}`" :showModal="showModal" @closeModal="showModal = false">
-            <submit-order :currencyList="currencyList" :topInput="topInput" :bottomInput="bottomInput" :type="viewId"></submit-order>
+          <custom-modal :title="`تایید نهایی فرآیند ${viewId === 0 ? 'خرید' : 'فروش'}`" :showModal="showModal"
+            @closeModal="showModal = false">
+            <submit-order :currencyList="currencyList" :topInput="topInput" :bottomInput="bottomInput" :type="viewId">
+            </submit-order>
           </custom-modal>
         </div>
         <div class="col-md-4">
@@ -237,6 +237,18 @@ export default {
         }
       }
     },
+    submitFinalOrder() {
+      if (this.topInput.value.trim() === '' || this.bottomInput.value.trim() === '') {
+        this.$fire({
+          title: "فیلد خالی!",
+          text: 'لطفا فیلد مقدار را پر نمایید...',
+          type: "warning",
+          timer: 10000
+        });
+        return false
+      }
+      this.showModal = true
+    }
   }
 }
 </script>

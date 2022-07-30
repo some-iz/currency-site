@@ -27,15 +27,22 @@ export const mutations = {
         state.userInfo.info[0][payload.id]= payload.val
     },
     updateUserAddress(state, payload) {
-        state.userInfo.address[0][payload.id]= payload.val
+        state.userInfo.address[0][payload.id] = payload.val
     },
+    setUserAddressWithoutNull(state) {
+        let address = {"verify": 0, "address": "", "city_id": 0, "city_name": "", "postal_code": "", "province_id": 0, "phone_number": "", "province_name": ""}
+        state.userInfo.address = []
+        state.userInfo.address.push(address)
+    }
 }
 export const actions = {
     async nuxtServerInit({ dispatch }) {
         await dispatch('pageData/getDashboardPageData')
     },
-    async getUserInfo() {
+    async getUserInfo({commit}) {
         const res = await this.$apiRun({auth: true , method: 'user_info_get' , vars: `` , mut: 'setUserInfo'})
+        if (res.data.address === null)
+            commit('setUserAddressWithoutNull')
         return res
     },
     async setUserInfo({ state }) {

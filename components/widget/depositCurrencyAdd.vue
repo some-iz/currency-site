@@ -1,9 +1,8 @@
 <template>
     <div class="w-100">
         <div class="d-flex flex-column flex-sm-row qr-code align-items-center">
-            <img width="200px"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png"
-                alt="">
+            <qr-code :size="150" class="ml-1 p-2"
+                :text="defaultDepositCurrencyAddress.address ? defaultDepositCurrencyAddress.address : ''"></qr-code>
             <div class="d-flex flex-column">
                 <h6 class="mt-1 font-weight-bold">کیف پول فعال برای واریز :</h6>
                 <span class="address d-flex align-items-center">
@@ -44,7 +43,7 @@ import CopyText from './copyText.vue'
 export default {
     components: {
         Btn,
-        CopyText
+        CopyText,
     },
     data() {
         return {
@@ -65,6 +64,15 @@ export default {
     },
     methods: {
         async addDepositCurrencyReq() {
+            if (this.tx.trim() === '' || this.amount.trim() === '') {
+                this.$fire({
+                    title: "فیلد خالی!",
+                    text: 'لطفا تمامی فیلدهای ضروری را پر نمایید...',
+                    type: "warning",
+                    timer: 10000
+                });
+                return false
+            }
             this.loading = true
             let res = await this.$store.dispatch('transaction/addUserCurrencyTransactionDeposit', { address: this.defaultDepositCurrencyAddress.address, amount: this.amount, symbol: this.$route.query.currency.toUpperCase(), network: this.defaultDepositCurrencyAddress.network, tx: this.tx })
             if (JSON.parse(res.ok) === true) {
@@ -89,10 +97,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-
 .qr-code{
-    background: $black-20;
+    background: $black-50;
     border: 2px solid $black-50;
     border-radius: 10px;
     .address{

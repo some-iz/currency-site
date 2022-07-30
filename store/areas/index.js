@@ -4,10 +4,10 @@ export const state = () => ({
 })
 export const mutations = {
     setProvinceList(state, payload) {
-        state.provinceList = payload.data
+        state.provinceList = payload.data ? payload.data : []
     },
     setCityList(state, payload) {
-        state.cityList = payload.data
+        state.cityList = payload.data ? payload.data : []
     },
 }
 export const actions = {

@@ -1,5 +1,5 @@
 <template>
-  <section class="container-fluid">
+  <section class="container-fluid px-1 px-sm-2 px-lg-3">
     <price-table customAction="wallet/getUserWallet" :isWallet="true" width="w-100" class="mt-3"></price-table>
   </section>
 </template>

@@ -20,5 +20,9 @@ export const actions = {
     async addUserFavFiatWallet({ }, obj) {
         let res = await this.$apiRun({auth: true , method: 'user_saved_currency_address_add' , vars: `?symbol=${obj.symbol}&address=${obj.address}&tag=${obj.tag}&network=${obj.network.network}&label=${obj.label}` , mut: ''})
         return res
+    },
+    async deleteUserFavFiatWallet({ }, id) {
+        let res = await this.$apiRun({auth: true , method: 'user_saved_currency_address_delete' , vars: `?id=${id}` , mut: ''})
+        return res
     }
 }

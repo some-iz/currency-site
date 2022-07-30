@@ -69,7 +69,10 @@ export default {
     data() {
         return {
             loading: false,
-            codeInfo: {},
+            codeInfo: {
+                code: '',
+                token: ''
+            },
             userAddress: '',
             amount: '',
             methodsWallet: 'new',
@@ -93,7 +96,7 @@ export default {
     },
     methods: {
         setCode(data) {
-            this.codeInfo.code = data
+            this.codeInfo = data
         },
         async getUserFavFiatWallet() {
             if (this.userFavFiatWallet.length === 0 && this.methodsWallet === 'exist')
@@ -104,8 +107,27 @@ export default {
             let tag = this.methodsWallet === 'new' ? this.tag : this.selectedFavWallet.address_tag
             let network = this.methodsWallet === 'new' ? this.selectedNetwork.network : this.selectedFavWallet.network
 
+            if (this.codeInfo.token === '') {
+                this.$fire({
+                    title: "درخواست ارسال کد!",
+                    text: 'لطفا درخواست ارسال کد ۴ رقمی را بدهید...',
+                    type: "warning",
+                    timer: 10000
+                });
+                return false
+            }
+            if (wallet === '' || this.amount.trim() === '' || this.codeInfo.code.trim() === '' || network === undefined || wallet === undefined) {
+                this.$fire({
+                    title: "فیلد خالی!",
+                    text: 'لطفا تمامی فیلدهای ضروری را پر نمایید...',
+                    type: "warning",
+                    timer: 10000
+                });
+                return false
+            }
+
             this.loading = true
-            let res = await this.$store.dispatch('transaction/addUserCurrencyTransactionWithdraw', { code: this.codeInfo.code, address: wallet, amount: this.amount, symbol: this.$route.query.currency.toUpperCase(), network: network, tag: tag })
+            let res = await this.$store.dispatch('transaction/addUserCurrencyTransactionWithdraw', { code: this.codeInfo.code, token: this.codeInfo.token, address: wallet, amount: this.amount, symbol: this.$route.query.currency.toUpperCase(), network: network, tag: tag })
             if (JSON.parse(res.ok) === true) {
                 this.$fire({
                     title: "عملیات موفق",

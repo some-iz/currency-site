@@ -38,7 +38,8 @@
                 تلفن ثابت : (با پیش شماره)
                 <input v-model="phoneNumber" class="input-form w-100 mt-1" type="text" />
             </label>
-            <Btn @click="setAddressInfo()" :loading="loadingBtn" class="mt-4 py-2 rounded font-weight-bold" width="full" size="small">ثبت آدرس</Btn>
+            <Btn @click="setAddressInfo()" :loading="loadingBtn" class="mt-4 py-2 rounded font-weight-bold" width="full"
+                size="small">ثبت آدرس</Btn>
         </div>
         <user-info-img width="col-md-5" :status="1" title="در انتظار ثبت آدرس..." imgSrc="/img/auth/location.png"
             imgAlt="address"></user-info-img>
@@ -63,7 +64,7 @@ export default {
     },
     computed: {
         provinceId: {
-            get() {
+            get() { 
                 return this.$store.state.userInfo.address[0].province_id
             },
             set(value) {
@@ -113,9 +114,9 @@ export default {
         this.loading = true
         if (this.provinceList.length === 0)
             await this.$store.dispatch('areas/getProvinceList');
-        await this.getCityList(this.provinceId)
+        if (this.provinceId != 0)
+            await this.$store.dispatch('areas/getCityList', this.provinceId)
         this.loading = false
-
     },
     methods: {
         async getCityList(id) {
